@@ -15,6 +15,7 @@ from direct.showbase.DirectObject import DirectObject
 sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 from controls import Control
 from character import *
+from chat import *
 
 SPEED = 0.5
 
@@ -35,7 +36,9 @@ class World(DirectObject):
         self.floater.reparentTo(render)
 
         controls = Control()
+        chat = Chat(self)
         player = Ralph(self)
+
         # player = Panda(self)
         # player = Car(self)
 
