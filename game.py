@@ -16,12 +16,15 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 from controls import Control
 from character import *
 from chat import *
+from connection import *
 
 SPEED = 0.5
 
 class World(DirectObject):
     def __init__(self):
         base.win.setClearColor(Vec4(0,0,0,1))
+
+        self.connection = Connection()
 
         # Set up the environment
         #
