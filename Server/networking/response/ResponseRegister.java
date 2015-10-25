@@ -4,27 +4,27 @@ package networking.response;
 import metadata.Constants;
 import utility.GamePacket;
 
-public class ResponseFloat extends GameResponse {
+public class ResponseRegister extends GameResponse {
 
     private float number;
 
-    public ResponseFloat() {
-        responseCode = Constants.RAND_FLOAT;
+    public ResponseRegister() {
+        responseCode = Constants.SMSG_REGISTER;
     }
 
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
-        packet.addFloat(number+1);
+        packet.addRegister(number+1);
 
         return packet.getBytes();
     }
 
 	public float getNumber() {
-		return number;
+		//return number;
 	}
 
-	public void setNumber(float number) {
-		this.number = number;
+	public void setNumber(Register number) {
+		//this.number = number;
 	}
 }
