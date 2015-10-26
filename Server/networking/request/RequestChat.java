@@ -21,11 +21,11 @@ public class RequestChat extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-        //message = DataReader.readString(dataInput);
+        message = DataReader.readString(dataInput);
     }
 
     @Override
     public void doBusiness() throws Exception {
-        //responseChat.setNumber(number);
+        responseChat.setMessage(message);
     }
 }

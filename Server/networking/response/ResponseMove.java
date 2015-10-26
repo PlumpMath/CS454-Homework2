@@ -6,7 +6,11 @@ import utility.GamePacket;
 
 public class ResponseMove extends GameResponse {
 
-    private float number;
+    private float x;
+    private float y;
+    private float z;
+    private float h;
+    private int isMoving;
 
     public ResponseMove() {
         responseCode = Constants.SMSG_MOVE;
@@ -15,16 +19,52 @@ public class ResponseMove extends GameResponse {
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
-        packet.addMove(number+1);
+        packet.addFloat(x);
+        packet.addFloat(y);
+        packet.addFloat(z);
+        packet.addFloat(h);
+        packet.addInt32(isMoving);
 
         return packet.getBytes();
     }
 
-	public float getNumber() {
-		//return number;
-	}
+    public float getX() {
+  		return x;
+  	}
 
-	public void setNumber(Move number) {
-		//this.number = number;
-	}
+  	public void setNumber(float x) {
+  		this.x = x;
+  	}
+
+    public float getY() {
+  		return y;
+  	}
+
+  	public void setNumber(float y) {
+  		this.y = y;
+  	}
+
+    public float getZ() {
+  		return z;
+  	}
+
+  	public void setNumber(float z) {
+  		this.z = z;
+  	}
+
+    public float getH() {
+  		return h;
+  	}
+
+  	public void setNumber(float h) {
+  		this.h = h;
+  	}
+
+    public int getIsMoving() {
+  		return isMoving;
+  	}
+
+  	public void setNumber(int isMoving) {
+  		this.isMoving = isMoving;
+  	}
 }

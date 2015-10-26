@@ -11,7 +11,9 @@ import utility.DataReader;
 public class RequestCharacterCreation extends GameRequest {
 
     // Data
-    private String message;
+    private String characterName;
+    private int factionId;
+    private int classType;
     // Responses
     private ResponseCharacterCreation responseCharacterCreation;
 
@@ -21,11 +23,15 @@ public class RequestCharacterCreation extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-        //message = DataReader.readString(dataInput);
+        characterName = DataReader.readString(dataInput);
+        factionId = DataReader.readInt(dataInput);
+        classType = DataReader.readInt(dataInput);
     }
 
     @Override
     public void doBusiness() throws Exception {
-        //responseCreateCharacter.setNumber(number);
+        responseCharacterCreation.setCharacterName(characterName);
+        responseCharacterCreation.setFactionId(factionId);
+        responseCharacterCreation.setClassType(classType);
     }
 }

@@ -6,7 +6,9 @@ import utility.GamePacket;
 
 public class ResponseCharacterCreation extends GameResponse {
 
-    private float number;
+    private String characterName;
+    private int factionId;
+    private int classType;
 
     public ResponseCharacterCreation() {
         responseCode = Constants.SMSG_CREATE_CHARACTER;
@@ -15,16 +17,33 @@ public class ResponseCharacterCreation extends GameResponse {
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
-        packet.addCharacterCreation(number+1);
-
+        packet.addString(characterName);
+        packet.addInt32(factionId);
+        packet.addInt32(classType);
         return packet.getBytes();
     }
 
-	public float getNumber() {
-		//return number;
-	}
+    public String getCharacterName() {
+  		return characterName;
+  	}
 
-	public void setNumber(CharacterCreation number) {
-		//this.number = number;
-	}
+  	public void setCharacterName(String characterName) {
+  		this.characterName = characterName;
+  	}
+
+    public int getFactionId() {
+  		return factionId;
+  	}
+
+  	public void setFactionId(int factionId) {
+  		this.factionId = factionId;
+  	}
+
+    public int getClassType() {
+  		return classType;
+  	}
+
+  	public void setClassType(int classType) {
+  		this.classType = classType;
+  	}
 }

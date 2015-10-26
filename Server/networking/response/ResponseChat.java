@@ -6,7 +6,7 @@ import utility.GamePacket;
 
 public class ResponseChat extends GameResponse {
 
-    private float number;
+    private String message;
 
     public ResponseChat() {
         responseCode = Constants.SMSG_CHAT;
@@ -20,11 +20,11 @@ public class ResponseChat extends GameResponse {
         return packet.getBytes();
     }
 
-	public float getNumber() {
-		//return number;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setNumber(Chat number) {
-		//this.number = number;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

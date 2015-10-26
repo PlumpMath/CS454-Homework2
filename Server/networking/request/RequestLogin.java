@@ -11,7 +11,8 @@ import utility.DataReader;
 public class RequestLogin extends GameRequest {
 
     // Data
-    private String message;
+    private String username;
+    private String password;
     // Responses
     private ResponseLogin responseLogin;
 
@@ -21,11 +22,13 @@ public class RequestLogin extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-        //message = DataReader.readString(dataInput);
+        username = DataReader.readString(dataInput);
+        password = DataReader.readString(dataInput);
     }
 
     @Override
     public void doBusiness() throws Exception {
-        //responseLogin.setNumber(number);
+        responseLogin.setUsername(username);
+        responseLogin.setPassword(password);
     }
 }

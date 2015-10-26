@@ -6,7 +6,8 @@ import utility.GamePacket;
 
 public class ResponseLogin extends GameResponse {
 
-    private float number;
+    private String username;
+    private String password;
 
     public ResponseLogin() {
         responseCode = Constants.SMSG_AUTH;
@@ -14,17 +15,33 @@ public class ResponseLogin extends GameResponse {
 
     @Override
     public byte[] constructResponseInBytes() {
-        GamePacket packet = new GamePacket(responseCode);
-        packet.addLogin(number+1);
+      int number == 0;
 
+      if(number == 0) {
+        GamePacket packet = new GamePacket(responseCode);
+        packet.addInt32(number);
         return packet.getBytes();
+      }
+      else {
+        GamePacket packet = new GamePacket(responseCode);
+        packet.addInt32(number);
+        return packet.getBytes();
+      }
     }
 
-	public float getNumber() {
-		//return number;
-	}
+    public String getUsername() {
+  		return username;
+  	}
 
-	public void setNumber(Login number) {
-		//this.number = number;
-	}
+  	public void setUsername(String username) {
+  		this.username = username;
+  	}
+
+    public String getPassword() {
+  		return password;
+  	}
+
+  	public void setPassword(String password) {
+  		this.password = password;
+  	}
 }

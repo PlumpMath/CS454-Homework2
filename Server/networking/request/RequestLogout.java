@@ -9,9 +9,7 @@ import networking.response.ResponseLogout;
 import utility.DataReader;
 
 public class RequestLogout extends GameRequest {
-
-    // Data
-    private String message;
+  
     // Responses
     private ResponseLogout responseLogout;
 
@@ -21,11 +19,10 @@ public class RequestLogout extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-        //message = DataReader.readString(dataInput);
     }
 
     @Override
     public void doBusiness() throws Exception {
-        //responseCreateCharacter.setNumber(number);
+
     }
 }

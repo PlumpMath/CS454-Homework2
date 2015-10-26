@@ -11,7 +11,11 @@ import utility.DataReader;
 public class RequestMove extends GameRequest {
 
     // Data
-    private String message;
+    private float x;
+    private float y;
+    private float z;
+    private float h;
+    private int isMoving;
     // Responses
     private ResponseMove responseMove;
 
@@ -21,11 +25,19 @@ public class RequestMove extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-        //message = DataReader.readString(dataInput);
+        x = DataReader.readFloat(dataInput);
+        y = DataReader.readFloat(dataInput);
+        z = DataReader.readFloat(dataInput);
+        h = DataReader.readFloat(dataInput);
+        isMoving = DataReader.readInt(dataInput);
     }
 
     @Override
     public void doBusiness() throws Exception {
-        //responseMove.setNumber(number);
+        responseMove.setX(x);
+        responseMove.setY(y);
+        responseMove.setZ(z);
+        responseMove.setH(h);
+        responseMove.setIsMoving(isMoving);
     }
 }
