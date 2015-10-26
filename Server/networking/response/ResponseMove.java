@@ -32,7 +32,7 @@ public class ResponseMove extends GameResponse {
   		return x;
   	}
 
-  	public void setNumber(float x) {
+  	public void setX(float x) {
   		this.x = x;
   	}
 
@@ -40,7 +40,7 @@ public class ResponseMove extends GameResponse {
   		return y;
   	}
 
-  	public void setNumber(float y) {
+  	public void setY(float y) {
   		this.y = y;
   	}
 
@@ -48,7 +48,7 @@ public class ResponseMove extends GameResponse {
   		return z;
   	}
 
-  	public void setNumber(float z) {
+  	public void setZ(float z) {
   		this.z = z;
   	}
 
@@ -56,7 +56,7 @@ public class ResponseMove extends GameResponse {
   		return h;
   	}
 
-  	public void setNumber(float h) {
+  	public void setH(float h) {
   		this.h = h;
   	}
 
@@ -64,7 +64,7 @@ public class ResponseMove extends GameResponse {
   		return isMoving;
   	}
 
-  	public void setNumber(int isMoving) {
+  	public void setIsMoving(int isMoving) {
   		this.isMoving = isMoving;
   	}
 }

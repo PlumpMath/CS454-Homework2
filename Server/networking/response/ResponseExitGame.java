@@ -15,16 +15,18 @@ public class ResponseExitGame extends GameResponse {
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
-        packet.addExitGame(number+1);
+        packet.addInt32(1);
 
         return packet.getBytes();
     }
 
-	public float getNumber() {
+/*	public float getNumber() {
 		//return number;
 	}
 
 	public void setNumber(ExitGame number) {
 		//this.number = number;
 	}
+	
+	*/
 }

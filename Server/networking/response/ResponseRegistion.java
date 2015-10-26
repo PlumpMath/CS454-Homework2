@@ -15,7 +15,7 @@ public class ResponseRegistion extends GameResponse {
 
     @Override
     public byte[] constructResponseInBytes() {
-      int number == 0;
+      int number = 0;
       
       GamePacket packet = new GamePacket(responseCode);
       packet.addInt32(number);

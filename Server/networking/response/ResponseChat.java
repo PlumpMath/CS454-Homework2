@@ -15,7 +15,7 @@ public class ResponseChat extends GameResponse {
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
-        packet.addChat(number+1);
+        packet.addInt32(1);
 
         return packet.getBytes();
     }
