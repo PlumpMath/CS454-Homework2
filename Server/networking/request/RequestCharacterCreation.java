@@ -5,18 +5,18 @@ import java.io.IOException;
 
 // Custom Imports
 //import core.GameServer;
-import networking.response.ResponseCreateCharacter;
+import networking.response.ResponseCharacterCreation;
 import utility.DataReader;
 
-public class RequestCreateCharacter extends GameRequest {
+public class RequestCharacterCreation extends GameRequest {
 
     // Data
     private String message;
     // Responses
-    private ResponseCreateCharacter responseCreateCharacter;
+    private ResponseCharacterCreation responseCharacterCreation;
 
-    public RequestCreateCharacter() {
-        responses.add(responseCreateCharacter = new ResponseCreateCharacter());
+    public RequestCharacterCreation() {
+        responses.add(responseCharacterCreation = new ResponseCharacterCreation());
     }
 
     @Override

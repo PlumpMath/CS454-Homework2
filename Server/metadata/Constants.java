@@ -12,7 +12,6 @@ public class Constants {
     public final static short CMSG_CREATE_CHARACTER = 104;
     public final static short CMSG_CHAT = 105;
     public final static short CMSG_MOVE = 106;
-    public final static short CMSG_HEARTBEAT = 113;
     public final static short CMSG_SAVE_EXIT_GAME = 119;
 
     // Response (2xx)
@@ -22,8 +21,10 @@ public class Constants {
     public final static short SMSG_CREATE_CHARACTER = 204;
     public final static short SMSG_CHAT = 205;
     public final static short SMSG_MOVE = 206;
-    public final static short SMSG_HEARTBEAT = 213;
     public final static short SMSG_SAVE_EXIT_GAME = 219;
+
+    // Unpaired (3xx)
+    public final static short REQ_HEARTBEAT = 301;
 
     //Test Request + Response
     public final static short RAND_INT = 1;

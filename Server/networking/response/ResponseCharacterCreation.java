@@ -4,18 +4,18 @@ package networking.response;
 import metadata.Constants;
 import utility.GamePacket;
 
-public class ResponseDisconnect extends GameResponse {
+public class ResponseCharacterCreation extends GameResponse {
 
     private float number;
 
-    public ResponseDisconnect() {
-        responseCode = Constants.SMSG_DISCONNECT;
+    public ResponseCharacterCreation() {
+        responseCode = Constants.SMSG_CREATE_CHARACTER;
     }
 
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
-        packet.addDisconnect(number+1);
+        packet.addCharacterCreation(number+1);
 
         return packet.getBytes();
     }
@@ -24,7 +24,7 @@ public class ResponseDisconnect extends GameResponse {
 		//return number;
 	}
 
-	public void setNumber(Disconnect number) {
+	public void setNumber(CharacterCreation number) {
 		//this.number = number;
 	}
 }

@@ -5,18 +5,18 @@ import java.io.IOException;
 
 // Custom Imports
 //import core.GameServer;
-import networking.response.ResponseDisconnect;
+import networking.response.ResponseLogout;
 import utility.DataReader;
 
-public class RequestDisconnect extends GameRequest {
+public class RequestLogout extends GameRequest {
 
     // Data
     private String message;
     // Responses
-    private ResponseDisconnect responseDisconnect;
+    private ResponseLogout responseLogout;
 
-    public RequestDisconnect() {
-        responses.add(responseDisconnect = new ResponseDisconnect());
+    public RequestLogout() {
+        responses.add(responseLogout = new ResponseLogout());
     }
 
     @Override
