@@ -76,6 +76,14 @@ class login(DirectObject):
         self.passTextbox.enterText('')
     def clearUserText(self):
         self.userTextbox.enterText('')
+    def clearRegUserText(self):
+        self.regInputUser.enterText('')
+    def clearRegPassText(self):
+        self.regInputPass.enterText('')
+    def clearRegCPassText(self):
+        self.regInputCPass.enterText('')
+
+
     def getUserText(self):
         self.usernameInput = self.userTextbox.get()
     def getPassText(self):
@@ -83,6 +91,7 @@ class login(DirectObject):
     def setUserText(self, textEntered):
         print "username: ",textEntered
         self.usernameInput = textEntered
+        print(usernameInput)
     def setPassText(self, textEntered):
         print "password: ",textEntered
         self.passwordInput = textEntered
@@ -109,8 +118,7 @@ class login(DirectObject):
             self.cManager.sendRequest(Constants.CMSG_REGISTER, self.registerUsername+" "+self.registerPassword)
             self.createLoginWindow()
         else:
-            self.failed = OnscreenText(text="Your password does not match Confirm Password.", pos=(-0.5, 0, 1), scale=0.06,fg=(1,0.5,0.5,1), align=TextNode.ACenter,mayChange=0)
-            self.failed.reparentTo(self.frame)
+            self.failed = OnscreenText(text="Your password does not match Confirm Password.", pos=(-0.5, 0.5), scale=0.06,fg=(1,0.1,0.1,1), align=TextNode.ALeft,mayChange=0)
             print "Failed (",self.registerUsername, ", ",self.registerPassword,", ",self.registerCPassword,")"
     def clickedRegCancel(self):
         self.destroyRegisterWindow()
@@ -136,55 +144,48 @@ class login(DirectObject):
         self.registerBtn.destroy()
         self.failed.destroy();
     def createLoginWindow(self):
-        self.frame = DirectFrame(frameColor=(0, 0, 0, 1), #(R,G,B,A)
-                                frameSize=(-1, 1, -1, 1),#(Left,Right,Bottom,Top)
-                                pos=(-0.5, 0, 0.5),
-                                scale = 2.3)
+        
 
-        self.window = OnscreenImage(image = "Interface/login_window.png", pos = (0,0,0), scale = (0.9, 1, 1.5) )
+        self.window = OnscreenImage(image = "Interface/login_window.png", pos = (0,0,0), scale = (2, 1, 2) )
         self.window.setTransparency(TransparencyAttrib.MAlpha)
 
         self.userTextbox = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.3),command=self.setUserText,initialText="Username",  numLines = 2,focus=0,focusInCommand=self.clearUserText, focusOutCommand=self.getUserText)
         self.passTextbox = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.1),command=self.setPassText,initialText="password", numLines = 2,focus=0,focusInCommand=self.clearPassText, focusOutCommand=self.getPassText)
-        #self.userTextbox.reparentTo(self.window)
-        #self.passTextbox.reparentTo(self.window)
+        
+        self.username = OnscreenText(text = "Username:", pos = (-0.6, 0.3), scale = 0.05,fg=(0,0,0.2,1),align=TextNode.ALeft,mayChange=0)
+        self.password = OnscreenText(text="Password: ", pos = (-0.6, 0.1), scale=0.05, fg=(0, 0,0.2,1), align=TextNode.ALeft, mayChange=0)
+
         self.submitBtn = DirectButton(image = "Interface/submitBtn.png", command=self.clickedSubmit, pos = (0.35, 0, -0.2),scale = (0.1, 1, 0.07))
         self.submitBtn.setTransparency(TransparencyAttrib.MAlpha)
         self.registerBtn = DirectButton(image = "Interface/registerBtn.png", command=self.clickedRegister, pos = (0.1, 0, -0.2),scale = (0.1, 1, 0.07))
         self.registerBtn.setTransparency(TransparencyAttrib.MAlpha)
         self.cancelBtn = DirectButton(image = "Interface/cancelBtn.png", command=self.clickedCancel, pos = (-0.35, 0, -0.2),scale = (0.1, 1, 0.07))
         self.cancelBtn.setTransparency(TransparencyAttrib.MAlpha)
-        #self.submitBtn.reparentTo(self.window)
-        #self.cancelBtn.reparentTo(self.window)
-        #self.registerBtn.reparentTo(self.window)
-    def createRegisterWindow(self):
-        self.frame = DirectFrame(frameColor=(0, 0, 0, 1), #(R,G,B,A)
-                                frameSize=(-1, 1, -1, 1),#(Left,Right,Bottom,Top)
-                                pos=(-0.5, 0, 0.5),
-                                scale = 2.3)
 
-        self.window = OnscreenImage(image = "Interface/login_window.png", pos = (0,0,0), scale = (0.9, 1, 1.5) )
+    def createRegisterWindow(self):
+        
+
+
+        self.window = OnscreenImage(image = "Interface/login_window.png", pos = (0,0,0), scale = (2, 1, 2) )
         self.window.setTransparency(TransparencyAttrib.MAlpha)
 
 
-        self.username = OnscreenText(text = "Username:", pos = (-0.6, 0.0), scale = 0.05,fg=(1,0.5,0.5,1),align=TextNode.ACenter,mayChange=0)
-        self.password = OnscreenText(text="Password: ", pos = (-0.6, -0.2), scale=0.05, fg=(1, 0.5,0.5,1), align=TextNode.ACenter, mayChange=0)
-        self.cpassword = OnscreenText(text="Confirm Password: ", pos = (-0.6, -0.4), scale=0.05, fg=(1, 0.5,0.5,1), align=TextNode.ACenter, mayChange=0)
-        #self.username.reparentTo(self.frame)
-        #self.password.reparentTo(self.frame)
-        #self.cpassword.reparentTo(self.frame)
-        self.regInputUser = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.3), command=self.setUserText,initialText="username", numLines = 1,focus=1,focusInCommand=self.clearUserText, focusOutCommand=self.getUserText)
-        self.regInputPass = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.1),command=self.setPassText,initialText="password", numLines = 1,focus=0,focusInCommand=self.clearPassText, focusOutCommand=self.getPassText)
-        self.regInputCPass = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, -0.1),command=self.setPassText,initialText="confirm password", numLines = 1,focus=0,focusInCommand=self.clearPassText, focusOutCommand=self.getPassText)
-        #self.regInputUser.reparentTo(self.frame)
-        #self.regInputPass.reparentTo(self.frame)
-        #self.regInputCPass.reparentTo(self.frame)
-        self.registerBtn = DirectButton(image = "Interface/registerBtn.png", command=self.clickedRegister, pos = (0.1, 0, -0.4),scale = (0.1, 1, 0.07))
+        self.username = OnscreenText(text = "Username:", pos = (-0.9, 0.3), scale = 0.05,fg=(0,0,0.2,1),align=TextNode.ALeft,mayChange=0)
+        self.password = OnscreenText(text="Password: ", pos = (-0.9, 0.1), scale=0.05, fg=(0, 0,0.2,1), align=TextNode.ALeft, mayChange=0)
+        self.cpassword = OnscreenText(text="Confirm Password: ", pos = (-0.9, -0.1), scale=0.05, fg=(0, 0,0.2,1), align=TextNode.ALeft, mayChange=0)
+        
+
+        self.regInputUser = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.3), command=self.setUserText,initialText="username", numLines = 1,focus=0,focusInCommand=self.clearRegUserText, focusOutCommand=self.getUserText)
+        self.regInputPass = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.1),command=self.setPassText,initialText="password", numLines = 1,focus=0,focusInCommand=self.clearRegPassText, focusOutCommand=self.getPassText)
+        self.regInputCPass = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, -0.1),command=self.setPassText,initialText="confirm password", numLines = 1,focus=0,focusInCommand=self.clearRegCPassText, focusOutCommand=self.getPassText)
+       
+
+        self.registerBtn = DirectButton(image = "Interface/registerBtn.png", command=self.clickedRegRegister, pos = (0.1, 0, -0.4),scale = (0.1, 1, 0.07))
         self.registerBtn.setTransparency(TransparencyAttrib.MAlpha)
-        self.cancelBtn = DirectButton(image = "Interface/cancelBtn.png", command=self.clickedCancel, pos = (-0.35, 0, -0.4),scale = (0.1, 1, 0.07))
+        self.cancelBtn = DirectButton(image = "Interface/cancelBtn.png", command=self.clickedRegCancel, pos = (-0.35, 0, -0.4),scale = (0.1, 1, 0.07))
         self.cancelBtn.setTransparency(TransparencyAttrib.MAlpha)
-        #self.cancelBtn.reparentTo(self.frame)
-        #self.registerBtn.reparentTo(self.frame)
+       
+
 
 l = login()
 run()
