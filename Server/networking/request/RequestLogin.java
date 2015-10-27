@@ -3,6 +3,8 @@ package networking.request;
 // Java Imports
 import java.io.IOException;
 
+
+
 // Custom Imports
 //import core.GameServer;
 import networking.response.ResponseLogin;
@@ -24,6 +26,8 @@ public class RequestLogin extends GameRequest {
     public void parse() throws IOException {
         username = DataReader.readString(dataInput);
         password = DataReader.readString(dataInput);
+       // System.out.println("RequestLogin : code " +username);
+      //  System.out.println("RequestLogin : code " +password);
     }
 
     @Override

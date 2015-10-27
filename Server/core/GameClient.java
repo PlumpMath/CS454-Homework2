@@ -89,6 +89,7 @@ public class GameClient extends Thread {
                     dataInput = new DataInputStream(new ByteArrayInputStream(buffer));
                     // Extract the request code number
                     requestCode = DataReader.readShort(dataInput);
+                    System.out.println("Request Came : code " +requestCode);
                     // Determine the type of request
                     GameRequest request = GameRequestTable.get(requestCode);
                     // If the request exists, process like following:
