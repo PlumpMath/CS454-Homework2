@@ -4,22 +4,24 @@ use hw2db;
 drop table if exists players;
 
 create table players(
-	name varchar(30),
-	password varchar(20),
-	character varchar(30),
-	posX DECIMAL(4,4),
-	posY DECIMAL(4,4),
-	posZ DECIMAL(4,4),
-	posH DECIMAL(4,4), 
+	username text,
+	password text,
+	model text,
+	pos text,
 	isMoving boolean,
 
 
-	PRIMARY KEY (name)
+	PRIMARY KEY (username (30))
 
 
 );
 
-insert into players VALUES ('Vicken','1234','ralph',0,0,0,0,0,0);
-insert into players VALUES ('Genus','1234','panda',3,3,0,0,0,0);
-insert into players VALUES ('Maxime','1234','car',5,5,0,0,0,0);
-insert into players VALUES ('Charles','1234','car',7,7,0,0,0,0);
+insert into players VALUES ('Vicken','1234','ralph','0,0,0,0',False);
+insert into players VALUES ('Genus','1234','panda','3.0,3.0,0,0',False);
+insert into players VALUES ('Maxime','1234','car','5.0,5.0,0,0',False);
+insert into players VALUES ('Charles','1234','car','7.0,7.0,0,0',False);
+
+DROP USER if exists'cs454user'@'localhost';
+CREATE USER 'cs454user'@'localhost' IDENTIFIED BY 'cs454pwd';
+GRANT ALL PRIVILEGES ON hw2db.* TO 'cs454user'@'localhost';
+FLUSH PRIVILEGES;
