@@ -34,6 +34,7 @@ class Constants:
     SMSG_RESOURCE                       = 209
     SMSG_CONTROL_POINT_STATE            = 211
     SMSG_CONTROL_POINT_CAP              = 212
+    SMSG_SAVE_EXIT_GAME                 = 219
     SMSG_RENDER_CHARACTER               = 310
     SMSG_REMOVE_CHARACTER               = 311
     SMSG_SPAWN_GUARDS                   = 312

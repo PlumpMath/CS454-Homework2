@@ -4,7 +4,7 @@ from direct.distributed.PyDatagram import PyDatagram
 from common.Constants import Constants
 from net.request.ServerRequest import ServerRequest
 
-class RequestHeartbeat(ServerRequest):
+class RequestExitGame(ServerRequest):
 
 
     def send(self, args = None):

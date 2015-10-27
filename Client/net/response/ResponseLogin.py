@@ -9,11 +9,14 @@ class ResponseLogin(ServerResponse):
     def execute(self, data):
 
         try:
-            self.msg1 = data.getInt32()
-            self.msg2 = data.getString()
-            print "ResponseLogin - ", self.msg1
-            print "ResponseLogin - ", self.msg2
+            # self.msg1 = data.getInt32()
+            # self.msg2 = data.getString32()
+            # print "ResponseLogin - ", self.msg1
+            # print "ResponseLogin - ", self.msg2
             # self.characterSelection()
+            print data
+            print "******************"
+            print data.getString()
             # return task.done
             # taskMgr.add(self.characterSelection, "characterSelection")
 

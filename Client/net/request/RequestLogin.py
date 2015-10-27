@@ -12,7 +12,10 @@ class RequestLogin(ServerRequest):
         try:
             pkg = PyDatagram()
             pkg.addUint16(Constants.CMSG_AUTH)
-            pkg.addString(username)
+            userlist =username.split()
+            pkg.addString(userlist[0])
+            pkg.addString(userlist[1])
+
 
             self.cWriter.send(pkg, self.connection)
 

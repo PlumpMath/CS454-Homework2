@@ -3,17 +3,17 @@ from traceback import print_exc
 from common.Constants import Constants
 from net.response.ServerResponse import ServerResponse
 
-class ResponseRegistion(ServerResponse):
+class ResponseChat(ServerResponse):
 
     def execute(self, data):
 
         try:
             self.msg = data.getString()
 
-            print "ResponseRegistion - ", self.msg
+            print "ResponseChat - ", self.msg
 
             #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 
         except:
-            self.log('Bad [' + str(Constants.SMSG_REGISTER) + '] String Response')
+            self.log('Bad [' + str(Constants.SMSG_MOVE) + '] String Response')
             print_exc()
