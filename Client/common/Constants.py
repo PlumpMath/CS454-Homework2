@@ -7,7 +7,7 @@ class Constants:
     RAND_FLOAT                          = 4
 
     SERVER_IP = 'localhost'
-    SERVER_PORT = 9225
+    SERVER_PORT = 9252
     DEBUG = True
     MSG_NONE                            = 0
     CMSG_AUTH                           = 101
@@ -20,6 +20,7 @@ class Constants:
     CMSG_HEALTH                         = 108
     CMSG_CONTROL_POINT_STATE            = 111
     CMSG_CONTROL_POINT_CAP              = 112
+    CMSG_SAVE_EXIT_GAME                 = 119
     REQ_HEARTBEAT                       = 301
     
     SMSG_AUTH                           = 201
@@ -41,3 +42,4 @@ class Constants:
     SMSG_DESTROY_GOLEMCP                = 322
     SMSG_SPAWN_GOLEM_NPC                = 323
     SMSG_GOLEM_PIECE                    = 324
+
