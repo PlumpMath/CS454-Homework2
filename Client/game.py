@@ -1,31 +1,60 @@
+import __builtin__
+
+""" Python Imports """
+from hashlib import md5
+from sys import exit
+from time import strftime
+
+""" Panda3D Imports """
+from direct.directbase.DirectStart import *
+from direct.showbase.DirectObject import DirectObject
+from panda3d.core import Texture
+from panda3d.core import WindowProperties
+from panda3d.core import *
+from direct.actor.Actor import Actor
+from direct.gui.DirectGui import *
 import direct.directbase.DirectStart
 import random, sys, os, math, time
 import os.path
-
 from panda3d.core import Filename,AmbientLight,DirectionalLight
 from panda3d.core import PandaNode,NodePath,Camera,TextNode
 from panda3d.core import Point3
 from panda3d.core import Vec3,Vec4,BitMask32
-
-from direct.actor.Actor import Actor
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import Sequence
-from direct.showbase.DirectObject import DirectObject
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 from controls import Control
 from character import *
 from chat import *
-from connection import *
-#from interface import *
+from common.Constants import Constants
+from net.ConnectionManager import ConnectionManager
 
 SPEED = 0.5
 
 class World(DirectObject):
+    
+    def startConnection(self):
+        """Create a connection to the remote host.
+
+        If a connection cannot be created, it will ask the user to perform
+        additional retries.
+
+        """
+        if self.cManager.connection == None:
+            if not self.cManager.startConnection():
+                return False
+
+        return True
+
     def __init__(self):
         base.win.setClearColor(Vec4(0,0,0,1))
 
-        self.connection = Connection()
+        # Network Setup
+        print "before"
+        self.cManager = ConnectionManager()
+        self.startConnection()
+        print "after"
 
         # Set up the environment
         #
