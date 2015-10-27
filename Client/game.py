@@ -17,7 +17,7 @@ from controls import Control
 from character import *
 from chat import *
 from connection import *
-from interface import *
+#from interface import *
 
 SPEED = 0.5
 
@@ -29,7 +29,7 @@ class World(DirectObject):
 
         # Set up the environment
         #
-        
+
         #self.interface = Interface()
         self.environ = loader.loadModel("models/square")
         self.environ.reparentTo(render)

@@ -27,14 +27,14 @@ from net.ConnectionManager import ConnectionManager
 class Main(DirectObject):
 
     def __init__(self):
-        
+
 	    # Network Setup
         self.cManager = ConnectionManager()
         self.startConnection()
         # login(self)
         # loginUser = login()
         # self.characterSelection()
-        # print "hi" ,loginUser 
+        # print "hi" ,loginUser
         taskMgr.add(self.login, "login")
 
     def startConnection(self):
@@ -66,19 +66,19 @@ class Main(DirectObject):
         submitBtn = DirectButton()
         registerBtn = DirectButton()
         cancelBtn = DirectButton()
-        
-        
+
+
         registerUsername = ""
         registerPassword = ""
         registerCPassword = ""
-        
+
         regInputUser = DirectEntry()
         regInputPass = DirectEntry()
         regInputCPass = DirectEntry()
-        
+
         regRegisterBtn = DirectButton()
         regCancelBtn = DirectButton()
-        
+
         def __init__(self):
             print 'Loading Login...'
             self.cManager = ConnectionManager()
@@ -167,7 +167,7 @@ class Main(DirectObject):
             self.frame = DirectFrame(frameColor=(0, 0, 0, 1), #(R,G,B,A)
                                     frameSize=(-1, 1, -1, 1),#(Left,Right,Bottom,Top)
                                     pos=(-0.5, 0, 0.5))
-                    
+
             self.username = OnscreenText(text = "username:", pos = (-0.1, 0.0), scale = 0.05,fg=(1,0.5,0.5,1),align=TextNode.ACenter,mayChange=0)
             self.password = OnscreenText(text="password: ", pos = (-0.1, -0.2), scale=0.05, fg=(1, 0.5,0.5,1), align=TextNode.ACenter, mayChange=0)
             self.username.reparentTo(self.frame)
@@ -202,30 +202,30 @@ class Main(DirectObject):
             self.cancelBtn =  DirectButton(text = ("Cancel", "Cancel", "Cancel", "disabled"), scale=.08, command=self.clickedRegCancel, pos=(0.2, 0.0, -0.90))
             self.cancelBtn.reparentTo(self.frame)
             self.registerBtn.reparentTo(self.frame)
-    
+
     # def menu(self, task):
     #     # Accept raw_input choice
     #     choice = input("1 - Rand int\n2 - Rand string\n3 - Rand short\n4 - Rand float\n101 - login\n6 - Exit\n")
-        
+
     #     msg = 0
     #     username = 0
     #     password = 0
-        
+
     #     if choice is 1: msg = random.randint(-(2**16), 2**16 - 1)
     #     elif choice is 2: msg = ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(7))
     #     elif choice is 3: msg = random.randint(0, 2**16 - 1)
     #     elif choice is 4: msg = 100 * random.random()
-    #     elif choice is 101: 
+    #     elif choice is 101:
     #     	username = "user"
     #     	password = "pass"
     #     elif choice is 6: sys.exit()
     #     else: print "Invalid input"
-        
+
     #     if choice is 101:
     #     	self.cManager.sendRequest(choice, username+" "+password)
     #     else:
     #     	self.cManager.sendRequest(choice, msg);
-        
+
     #     return task.again
 
 m = Main()

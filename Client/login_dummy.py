@@ -38,19 +38,19 @@ class login(DirectObject):
     submitBtn = DirectButton()
     registerBtn = DirectButton()
     cancelBtn = DirectButton()
-    
-    
+
+
     registerUsername = ""
     registerPassword = ""
     registerCPassword = ""
-    
+
     regInputUser = DirectEntry()
     regInputPass = DirectEntry()
     regInputCPass = DirectEntry()
-    
+
     regRegisterBtn = DirectButton()
     regCancelBtn = DirectButton()
-    
+
     def __init__(self):
         print 'Loading Login...'
         self.cManager = ConnectionManager()
@@ -138,7 +138,7 @@ class login(DirectObject):
         self.frame = DirectFrame(frameColor=(0, 0, 0, 1), #(R,G,B,A)
                                 frameSize=(-1, 1, -1, 1),#(Left,Right,Bottom,Top)
                                 pos=(-0.5, 0, 0.5))
-                
+
         self.username = OnscreenText(text = "username:", pos = (-0.1, 0.0), scale = 0.05,fg=(1,0.5,0.5,1),align=TextNode.ACenter,mayChange=0)
         self.password = OnscreenText(text="password: ", pos = (-0.1, -0.2), scale=0.05, fg=(1, 0.5,0.5,1), align=TextNode.ACenter, mayChange=0)
         self.username.reparentTo(self.frame)
