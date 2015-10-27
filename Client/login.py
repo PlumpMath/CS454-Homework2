@@ -118,7 +118,7 @@ class login(DirectObject):
             self.cManager.sendRequest(Constants.CMSG_REGISTER, self.registerUsername+" "+self.registerPassword)
             self.createLoginWindow()
         else:
-            self.failed = OnscreenText(text="Your password does not match Confirm Password.", pos=(-0.5, 1), scale=0.06,fg=(1,0.5,0.5,1), align=TextNode.ALeft,mayChange=0)
+            self.failed = OnscreenText(text="Your password does not match Confirm Password.", pos=(-0.5, 0.5), scale=0.06,fg=(1,0.1,0.1,1), align=TextNode.ALeft,mayChange=0)
             print "Failed (",self.registerUsername, ", ",self.registerPassword,", ",self.registerCPassword,")"
     def clickedRegCancel(self):
         self.destroyRegisterWindow()
@@ -151,6 +151,9 @@ class login(DirectObject):
 
         self.userTextbox = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.3),command=self.setUserText,initialText="Username",  numLines = 2,focus=0,focusInCommand=self.clearUserText, focusOutCommand=self.getUserText)
         self.passTextbox = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.1),command=self.setPassText,initialText="password", numLines = 2,focus=0,focusInCommand=self.clearPassText, focusOutCommand=self.getPassText)
+        
+        self.username = OnscreenText(text = "Username:", pos = (-0.6, 0.3), scale = 0.05,fg=(0,0,0.2,1),align=TextNode.ALeft,mayChange=0)
+        self.password = OnscreenText(text="Password: ", pos = (-0.6, 0.1), scale=0.05, fg=(0, 0,0.2,1), align=TextNode.ALeft, mayChange=0)
 
         self.submitBtn = DirectButton(image = "Interface/submitBtn.png", command=self.clickedSubmit, pos = (0.35, 0, -0.2),scale = (0.1, 1, 0.07))
         self.submitBtn.setTransparency(TransparencyAttrib.MAlpha)
@@ -167,9 +170,9 @@ class login(DirectObject):
         self.window.setTransparency(TransparencyAttrib.MAlpha)
 
 
-        self.username = OnscreenText(text = "Username:", pos = (-0.9, 0.3), scale = 0.05,fg=(1,0.5,0.5,1),align=TextNode.ALeft,mayChange=0)
-        self.password = OnscreenText(text="Password: ", pos = (-0.9, 0.1), scale=0.05, fg=(1, 0.5,0.5,1), align=TextNode.ALeft, mayChange=0)
-        self.cpassword = OnscreenText(text="Confirm Password: ", pos = (-0.9, -0.1), scale=0.05, fg=(1, 0.5,0.5,1), align=TextNode.ALeft, mayChange=0)
+        self.username = OnscreenText(text = "Username:", pos = (-0.9, 0.3), scale = 0.05,fg=(0,0,0.2,1),align=TextNode.ALeft,mayChange=0)
+        self.password = OnscreenText(text="Password: ", pos = (-0.9, 0.1), scale=0.05, fg=(0, 0,0.2,1), align=TextNode.ALeft, mayChange=0)
+        self.cpassword = OnscreenText(text="Confirm Password: ", pos = (-0.9, -0.1), scale=0.05, fg=(0, 0,0.2,1), align=TextNode.ALeft, mayChange=0)
         
 
         self.regInputUser = DirectEntry(text = "" ,scale=.05, pos = (-0.3, 0, 0.3), command=self.setUserText,initialText="username", numLines = 1,focus=0,focusInCommand=self.clearRegUserText, focusOutCommand=self.getUserText)
