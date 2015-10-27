@@ -1,7 +1,7 @@
 use hw2db;
 
 
-drop table players;
+drop table if exists players;
 
 create table players(
 	name varchar(30),
@@ -11,8 +11,7 @@ create table players(
 	posY DECIMAL(4,4),
 	posZ DECIMAL(4,4),
 	posH DECIMAL(4,4), 
-	posP DECIMAL(4,4),
-	posR DECIMAL(4,4),
+	isMoving boolean,
 
 
 	PRIMARY KEY (name)
