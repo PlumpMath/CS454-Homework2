@@ -1,19 +1,24 @@
 use hw2db;
 
-
+drop table if exists connectedPlayers;
 drop table if exists players;
 
 create table players(
-	username text,
+	username varchar(30),
 	password text,
 	model text,
 	pos text,
 	isMoving boolean,
 
+	PRIMARY KEY (username)
 
-	PRIMARY KEY (username (30))
+);
 
-
+create table connectedPlayers(
+	id integer PRIMARY KEY,
+	username varchar(30),
+    
+    FOREIGN KEY (username) REFERENCES players(username)
 );
 
 insert into players VALUES ('Vicken','1234','ralph','0,0,0,0',False);
