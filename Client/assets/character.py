@@ -11,6 +11,18 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import Sequence
 from direct.showbase.DirectObject import DirectObject
 
+RALPH_HEIGHT = 10
+RALPH_WIDTH = 10
+RALPH_LENGTH = 10
+
+PANDA_HEIGHT = 20
+PANDA_WIDTH = 10
+PANDA_LENGTH = 10
+
+CAR_HEIGHT = 30
+CAR_WIDTH = 10
+CAR_LENGTH = 10
+
 class Character:
     #Records the state of the arrow keys
     def setKey(self, key, value):
@@ -118,6 +130,12 @@ class Character:
 
         return task.cont
 
+
+
+    def isMovePossible(self):
+
+        return True
+
 class Ralph(Character):
     def __init__(self, world):
         self.world = world
@@ -136,6 +154,10 @@ class Ralph(Character):
         self.loadControls()
         self.world.isMoving = False
 
+        self.height = RALPH_HEIGHT
+        self.length = RALPH_LENGTH
+        self.width = RALPH_WIDTH
+
 class Panda(Character):
     def __init__(self, world):
         self.world = world
@@ -151,6 +173,10 @@ class Panda(Character):
 
         self.loadControls()
         self.world.isMoving = False
+
+        self.height = PANDA_HEIGHT
+        self.length = PANDA_LENGTH
+        self.width = PANDA_WIDTH
 
 class Car(Character):
     def __init__(self, world):
@@ -168,3 +194,7 @@ class Car(Character):
 
         self.loadControls()
         self.world.isMoving = False
+
+        self.height = CAR_HEIGHT
+        self.length = CAR_LENGTH
+        self.width = CAR_WIDTH

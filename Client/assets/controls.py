@@ -36,3 +36,4 @@ class Control:
         self.inst6 = self.addInstructions(0.70, "[Q]: Rotate Camera Left")
         self.inst7 = self.addInstructions(0.65, "[E]: Rotate Camera Right")
         self.inst7 = self.addInstructions(0.60, "*Arrow Keys also work.")
+        self.inst8 = self.addInstructions(0.55, "[M] : Open Chat Box")
