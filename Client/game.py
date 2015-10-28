@@ -27,7 +27,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 from controls import Control
 from character import *
 from chat import *
-from environment import Environment
+#from environment import Environment
 from common.Constants import Constants
 from net.ConnectionManager import ConnectionManager
 
@@ -72,7 +72,7 @@ class World(DirectObject):
         self.floater.reparentTo(render)
 
         # add spheres
-        self.sun = Environment(self)
+        #self.sun = Environment(self)
 
 
 
