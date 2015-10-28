@@ -7,7 +7,7 @@ from net.request.ServerRequest import ServerRequest
 class RequestChat(ServerRequest):
 
 
-    def send(self, args = None):
+    def send(self, message = None):
 
         try:
             pkg = PyDatagram()

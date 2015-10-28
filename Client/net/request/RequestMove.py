@@ -7,12 +7,17 @@ from net.request.ServerRequest import ServerRequest
 class RequestMove(ServerRequest):
 
 
-    def send(self, args = None):
+    def send(self, pos):
 
         try:
             pkg = PyDatagram()
             pkg.addUint16(Constants.CMSG_MOVE)
-            pkg.addString(args)
+            posNew = pos.split(",")
+            pkg.addFloat32(float(posNew[0]))
+            pkg.addFloat32(float(posNew[1]))
+            pkg.addFloat32(float(posNew[2]))
+            pkg.addFloat32(float(posNew[3]))
+            pkg.addInt32(int(posNew[4]))
 
             self.cWriter.send(pkg, self.connection)
 
