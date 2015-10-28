@@ -27,6 +27,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 from controls import Control
 from character import *
 from chat import *
+#from environment import Environment
 from common.Constants import Constants
 from net.ConnectionManager import ConnectionManager
 
@@ -70,6 +71,11 @@ class World(DirectObject):
         self.floater = NodePath(PandaNode("floater"))
         self.floater.reparentTo(render)
 
+        # add spheres
+        #self.sun = Environment(self)
+
+
+
         controls = Control()
         chat = Chat(self)
         player = Panda(self)
@@ -77,6 +83,8 @@ class World(DirectObject):
 
         # player = Panda(self)
         # player = Car(self)
+
+
 
         taskMgr.add(player.move,"moveTask")
 
