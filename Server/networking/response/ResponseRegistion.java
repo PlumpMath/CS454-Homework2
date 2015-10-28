@@ -61,6 +61,6 @@ public class ResponseRegistion extends GameResponse {
     	
         System.out.println("before db");
         
-    	return connect.Update("insert into players VALUES ('"+user+"','"+pwd+"','0,0,0,0',False);");
+    	return connect.Update("insert into players VALUES ('"+user+"','"+pwd+"','ralph',0,0,0,0,0,0);");
     }
 }

@@ -24,6 +24,6 @@ class ServerResponse:
         """Initialize a reference for the main instance."""
         self.main = main
 
-    def execute(self, conn, data):
+    def execute(self, data):
         """Abstract method defined by a subclass to handle a specific response."""
         pass

@@ -5,7 +5,7 @@ from net.response.ServerResponse import ServerResponse
 
 class ResponseRandomFloat(ServerResponse):
 
-    def execute(self, conn, data):
+    def execute(self, data):
 
         try:
             self.msg = data.getFloat32()
