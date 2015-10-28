@@ -47,6 +47,16 @@ class Main(DirectObject):
         self.userList = userList
         self.charSelect = characterSelection(self)
 
+    def Logout(self):
+        print "Logout"
+
+    def Game(self,user,char):
+        self.user = user
+        self.char = char
+        self.StartGame = Game()
+
+        print "game started"
+
     def startConnection(self):
         """Create a connection to the remote host.
 

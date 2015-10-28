@@ -28,7 +28,7 @@ create table players(
 
 create table connectedPlayers(
 	
-	id integer PRIMARY KEY,
+	id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	
 	username varchar(30),
     

@@ -7,10 +7,11 @@ class ResponseCreateCharacter(ServerResponse):
 
     def execute(self, conn, data):
 
-        try:
-            self.msg = data.getString()
-
-            print "ResponseCreateCharacter - ", self.msg
+        try :
+        	# self.msg = data.getInt32()
+        	# self.msg = data.getString()
+        	# print "ResponseCreateCharacter - ", self.msg
+        	conn.main.charSelect.processingCreateResponse(data)
 
             #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 

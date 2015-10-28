@@ -8,11 +8,11 @@ class ResponseLogout(ServerResponse):
     def execute(self, conn, data):
 
         try:
-            self.msg = data.getString()
+            conn.main.Logout()
 
-            print "ResponseLogout - ", self.msg
+            # print "ResponseLogout - ", self.msg
 
-            #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
+            # #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 
         except:
             self.log('Bad [' + str(Constants.SMSG_DISCONNECT) + '] String Response')

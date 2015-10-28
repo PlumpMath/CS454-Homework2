@@ -17,7 +17,6 @@ from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import Sequence
 from common.Constants import Constants
-from m import ModelSelection
 
 class login(DirectObject):
     TEXT_COLOR = (1,1,1,1)
@@ -85,6 +84,7 @@ class login(DirectObject):
         self.passwordInput = self.passTextbox.get().strip()
         if(self.usernameInput is not "" and self.passwordInput is not ""):
             print "You pressed Submit", self.usernameInput, " ; ",self.passwordInput
+            self.destroyLoginWindow()
             self.world.cManager.sendRequest(Constants.CMSG_AUTH, self.usernameInput+" "+self.passwordInput);
         else:
             print "Please enter in a username and password"

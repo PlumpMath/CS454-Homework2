@@ -7,16 +7,19 @@ from net.request.ServerRequest import ServerRequest
 class RequestCreateCharacter(ServerRequest):
 
 
-    def send(self, characterInfo = None):
+    def send(self, character = None):
 
         try:
             pkg = PyDatagram()
-            pkg.addUint16(Constants.CMSG_AUTH)
-            characterList = characterInfo.split(",")
-            pkg.addString(characterList[0])
-            pkg.addUint16(int(characterList[1]))
-            pkg.addUint16(int(characterList[2]))
-
+            pkg.addUint16(Constants.CMSG_CREATE_CHARACTER)
+            characterlist =character.split()
+            # print "characterlist", characterlist
+            # print "username ",characterlist[0]
+            # print "charname ",characterlist[1]
+            pkg.addString(characterlist[0])
+            pkg.addString(characterlist[1])
+            
+            
 
             self.cWriter.send(pkg, self.connection)
 
