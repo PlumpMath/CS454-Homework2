@@ -5,7 +5,7 @@ from net.response.ServerResponse import ServerResponse
 
 class ResponseCreateCharacter(ServerResponse):
 
-    def execute(self, data):
+    def execute(self, conn, data):
 
         try:
             self.msg = data.getString()
