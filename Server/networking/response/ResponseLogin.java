@@ -29,9 +29,44 @@ public class ResponseLogin extends GameResponse {
 
       if(number==1) {
     	  System.out.println("valid");
+    	  int count =0;
         GamePacket packet = new GamePacket(responseCode);
         packet.addInt32(number);
         packet.addString("Welcome "+username);
+        
+        ResultSet resultcount = connect.Query("select count(*) from connectedPlayers;");
+
+        try {
+            while (resultcount.next()) {
+
+                count = resultcount.getInt("COUNT(*)");
+                System.out.println("hi count"+count);
+                packet.addInt32(count);
+
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ResultSet resultlist = connect.Query("select * from connectedPlayers;");
+        
+        try {
+            while (resultlist.next()) {
+            	
+                System.out.println("hi test"+resultlist.getString("username"));
+                System.out.println("hi test"+resultlist.getString("model"));
+                
+                packet.addString(resultlist.getString("username")+","+resultlist.getString("model"));
+
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
         return packet.getBytes();
       }
       else {
@@ -65,7 +100,7 @@ public class ResponseLogin extends GameResponse {
     private int validateUser(String user, String pwd) {
         System.out.println("before db");
         
-        ResultSet result = connect.Query("select * from players where name='"+user+"';");
+        ResultSet result = connect.Query("select * from players where username='"+user+"';");
         System.out.println("after");
         try {
             while (result.next()) {

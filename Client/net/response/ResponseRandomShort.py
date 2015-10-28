@@ -11,7 +11,7 @@ from net.response.ServerResponse import ServerResponse
 
 class ResponseRandomShort(ServerResponse):
 
-    def execute(self, data):
+    def execute(self, conn, data):
 
         try:
             self.msg = data.getUint16()

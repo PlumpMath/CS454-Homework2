@@ -16,11 +16,8 @@ from direct.actor.Actor import Actor
 from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import Sequence
-
-
 from common.Constants import Constants
-from net.ConnectionManager import ConnectionManager
-
+from m import ModelSelection
 
 class login(DirectObject):
     TEXT_COLOR = (1,1,1,1)
@@ -52,26 +49,15 @@ class login(DirectObject):
     regRegisterBtn = DirectButton()
     regCancelBtn = DirectButton()
     
-    def __init__(self):
+    def __init__(self, world):
+        self.world = world
         print 'Loading Login...'
-        self.cManager = ConnectionManager()
-        self.startConnection()
         frame = DirectFrame(frameColor=(0, 0, 0, 1), #(R,G,B,A)
                             frameSize=(-1, 1, -1, 1),#(Left,Right,Bottom,Top)
                             pos=(-0.5, 0, 0.5))
         self.createLoginWindow()
-    def startConnection(self):
-        """Create a connection to the remote host.
+    
 
-        If a connection cannot be created, it will ask the user to perform
-        additional retries.
-
-        """
-        if self.cManager.connection == None:
-            if not self.cManager.startConnection():
-                return False
-
-        return True
     def clearPassText(self):
         self.passTextbox.enterText('')
     def clearUserText(self):
@@ -82,7 +68,6 @@ class login(DirectObject):
         self.regInputPass.enterText('')
     def clearRegCPassText(self):
         self.regInputCPass.enterText('')
-
 
     def getUserText(self):
         self.usernameInput = self.userTextbox.get()
@@ -100,7 +85,7 @@ class login(DirectObject):
         self.passwordInput = self.passTextbox.get().strip()
         if(self.usernameInput is not "" and self.passwordInput is not ""):
             print "You pressed Submit", self.usernameInput, " ; ",self.passwordInput
-            self.cManager.sendRequest(Constants.CMSG_AUTH, self.usernameInput+" "+self.passwordInput);
+            self.world.cManager.sendRequest(Constants.CMSG_AUTH, self.usernameInput+" "+self.passwordInput);
         else:
             print "Please enter in a username and password"
     def clickedCancel(self):
@@ -115,7 +100,7 @@ class login(DirectObject):
         self.registerCPassword = self.regInputCPass.get()
         if self.registerPassword == self.registerCPassword:
             print "Success (",self.registerUsername, ", ",self.registerPassword,", ",self.registerCPassword,")"
-            self.cManager.sendRequest(Constants.CMSG_REGISTER, self.registerUsername+" "+self.registerPassword)
+            self.world.cManager.sendRequest(Constants.CMSG_REGISTER, self.registerUsername+" "+self.registerPassword)
             self.createLoginWindow()
         else:
             self.failed = OnscreenText(text="Your password does not match Confirm Password.", pos=(-0.5, 0.5), scale=0.06,fg=(1,0.1,0.1,1), align=TextNode.ALeft,mayChange=0)
@@ -184,8 +169,23 @@ class login(DirectObject):
         self.registerBtn.setTransparency(TransparencyAttrib.MAlpha)
         self.cancelBtn = DirectButton(image = "Interface/cancelBtn.png", command=self.clickedRegCancel, pos = (-0.35, 0, -0.4),scale = (0.1, 1, 0.07))
         self.cancelBtn.setTransparency(TransparencyAttrib.MAlpha)
-       
+
+    def processingLoginResponse(self, data):
+
+        self.msg1 = data.getInt32()
+        if self.msg1:
+            self.pl_list = []
+            self.welcome = data.getString()
+            self.pl_count = data.getInt32()
+            print "ResponseLogin - ", self.msg1
+            print "ResponseLogin msg- ", self.pl_count
+            for num in range (0,self.pl_count):
+                self.pl_list.append([num+1,data.getString()])
+                print self.pl_list
+            #h(self,self.welcome,self.pl_list)
+            self.world.CharSelect(self.welcome,self.pl_list)
+
+        else :
+            print "login error"
 
 
-l = login()
-run()
