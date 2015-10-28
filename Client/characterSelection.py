@@ -120,9 +120,13 @@ class characterSelection(DirectObject):
 			self.pl_list = []
 			self.name = data.getString()
 			self.char = data.getString()
+			self.pl_count = data.getInt32()
+			for num in range (0,self.pl_count):
+				self.pl_list.append([num+1,data.getString()])
+				print self.pl_list
 			# self.pl_count = data.getInt32()
-			print "ResponseCreate name - ", self.name
-			print "ResponseCreate char- ", self.char
+			# print "ResponseCreate name - ", self.name
+			# print "ResponseCreate char- ", self.char
 			# for num in range (0,self.pl_count):
 			# 	self.pl_list.append([num+1,data.getString()])
 			# 	print self.pl_list
@@ -130,7 +134,7 @@ class characterSelection(DirectObject):
 			self.destroyWindow()
 
 
-			self.world.Game(self.name,self.char)
+			self.world.Game(self.name,self.char,self.pl_count,self.pl_list)
 
 			# self.world.CharSelect(self.welcome,self.pl_list)
 		else :

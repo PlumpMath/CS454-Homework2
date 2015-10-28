@@ -50,10 +50,19 @@ class Main(DirectObject):
     def Logout(self):
         print "Logout"
 
-    def Game(self,user,char):
+    def Game(self,user,char,count,playerlist):
         self.user = user
         self.char = char
-        self.StartGame = Game()
+        self.count = count
+        self.playerlist = playerlist
+        print self.user
+        print self.char
+        print self.count
+        print self.playerlist
+
+
+
+        # self.StartGame = Game()
 
         print "game started"
 

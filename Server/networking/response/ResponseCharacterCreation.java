@@ -1,7 +1,13 @@
 package networking.response;
 
 // Custom Imports
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import database.DbClient;
+import database.DbInteract;
 import metadata.Constants;
 import utility.GamePacket;
 
@@ -24,11 +30,44 @@ public class ResponseCharacterCreation extends GameResponse {
         
         if(flag) {
         	number=1;
+        	int count =0;
       	  	System.out.println("valid");
       	  	GamePacket packet = new GamePacket(responseCode);
       	  	packet.addInt32(number);
       	  packet.addString(username);
       	  packet.addString(characterName);
+      	  
+      	  
+      	ResultSet resultcount = connect.Query("select count(*) from connectedPlayers;");
+
+        try {
+            while (resultcount.next()) {
+
+                count = resultcount.getInt("COUNT(*)");
+                System.out.println("hi count"+count);
+                packet.addInt32(count);
+
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ResultSet resultlist = connect.Query("select * from connectedPlayers;");
+        
+        try {
+            while (resultlist.next()) {
+            	
+                System.out.println("hi test"+resultlist.getString("username"));
+                System.out.println("hi test"+resultlist.getString("model"));
+                
+                packet.addString(resultlist.getString("username")+","+resultlist.getString("model"));
+
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+        }
       	  	return packet.getBytes();
         }
         else {
