@@ -33,7 +33,7 @@ from net.ConnectionManager import ConnectionManager
 SPEED = 0.5
 
 class World(DirectObject):
-    
+
     def startConnection(self):
         """Create a connection to the remote host.
 
@@ -52,7 +52,7 @@ class World(DirectObject):
 
         # Network Setup
         print "before"
-        self.cManager = ConnectionManager()
+        self.cManager = ConnectionManager(self)
         self.startConnection()
         print "after"
 
@@ -72,7 +72,7 @@ class World(DirectObject):
 
         controls = Control()
         chat = Chat(self)
-        player = Ralph(self)
+        player = Panda(self)
 
 
         # player = Panda(self)

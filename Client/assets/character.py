@@ -132,7 +132,7 @@ class Character:
 
 
 
-    def isMovePossible(self):
+    def isMovePossible(self,newPosition):
 
         return True
 
