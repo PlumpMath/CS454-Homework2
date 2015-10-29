@@ -10,7 +10,16 @@ class ResponseRegistration(ServerResponse):
         try:
             self.msg = data.getInt32()
 
-            print "ResponseRegistration - ", self.msg
+            if self.msg:
+            	print "User Added Successful"
+            	print " "
+            	conn.main.menu(self)
+            	# taskMgr.add(conn.main.menu, "Menu")
+
+            else:
+            	print "Registration Error"
+
+            # print "ResponseRegistration - ", self.msg
 
             #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 

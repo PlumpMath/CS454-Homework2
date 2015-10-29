@@ -11,7 +11,9 @@ class ResponseCreateCharacter(ServerResponse):
         	# self.msg = data.getInt32()
         	# self.msg = data.getString()
         	# print "ResponseCreateCharacter - ", self.msg
-        	conn.main.charSelect.processingCreateResponse(data)
+        	# conn.main.charSelect.processingCreateResponse(data)
+            conn.main.processingCreateResponse(data)
+
 
             #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 

@@ -28,7 +28,7 @@ public class DbConnect {
         Connect ();
     }
 
-    public void Desconectar () {
+    public void Disconnect () {
         connection = null;
     }
 
@@ -76,7 +76,7 @@ public class DbConnect {
         return true;
     }
 
-    public void cierraConexion(){
+    public void closeConnection(){
 
         try {
             connection.close();

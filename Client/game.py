@@ -57,6 +57,13 @@ class World(DirectObject):
         self.startConnection()
         print "after"
 
+        taskMgr.add(self.menu, "Menu")
+
+
+    def Start(self,pl_name,pl_char,pl_count,pl_list):
+
+
+
         # Set up the environment
         #
 
@@ -79,7 +86,16 @@ class World(DirectObject):
 
         controls = Control()
         chat = Chat(self)
-        player = Ralph(self)
+
+        if pl_char == "Panda1"  or pl_char == "Panda2":
+            print "hi"
+            player = Panda(self)
+        elif pl_char == "Car":
+            player = Car(self)
+        else :
+            player = Ralph(self)
+
+        player = Car(self)
 
 
         # player = Panda(self)
@@ -88,9 +104,9 @@ class World(DirectObject):
 
 
         taskMgr.add(player.move,"moveTask" )
-        taskMgr.add(sun.rotatePlanets,"rotateSun", extraArgs = [self.player], appendTask = True)
-        taskMgr.add(earth.rotatePlanets,"rotateEarth", extraArgs = [self.player], appendTask = True)
-        taskMgr.add(venus.rotatePlanets,"rotateVenus", extraArgs = [self.player], appendTask = True)
+        taskMgr.add(sun.rotatePlanets,"rotateSun", extraArgs = [self.sun,self.player], appendTask = True)
+        taskMgr.add(earth.rotatePlanets,"rotateEarth", extraArgs = [self.earth, self.player], appendTask = True)
+        taskMgr.add(venus.rotatePlanets,"rotateVenus", extraArgs = [self.venus, self.player], appendTask = True)
 
 
         # Create some lighting
@@ -102,6 +118,75 @@ class World(DirectObject):
         directionalLight.setSpecularColor(Vec4(1, 1, 1, 1))
         render.setLight(render.attachNewNode(ambientLight))
         render.setLight(render.attachNewNode(directionalLight))
+
+    def menu(self, task):
+        self.option = 0
+        choice = input("1-Register\n2-Login\n3-Exit\n")
+
+        msg = 0
+        self.username = ""
+        self.password = ""
+        self.cpassword = ""
+
+        if choice is 1:
+            self.username = str(raw_input("Enter the username\n"))
+            self.password = str(raw_input("Enter the password\n"))
+            self.cpassword = str(raw_input("Confirm password\n"))
+            if self.password == self.cpassword:
+                self.cManager.sendRequest(Constants.CMSG_REGISTER, self.username+" "+self.password)
+
+        elif choice is 2:
+            self.username = str(raw_input("Enter the username\n"))
+            self.password = str(raw_input("Enter the password\n"))
+            self.cManager.sendRequest(Constants.CMSG_AUTH, self.username+" "+self.password);
+        elif choice is 3:
+            sys.exit()
+        else: print "Invalid input"
+
+    def processingLoginResponse(self, data):
+
+        self.msg1 = data.getInt32()
+        if self.msg1:
+            self.pl_list = []
+            self.user = data.getString().split(" ")
+            self.pl_count = data.getInt32()
+
+            print "welcome ",self.user[1]
+            print "No of players logged in- ", self.pl_count
+            for num in range (0,self.pl_count):
+                self.pl_list.append([num+1,data.getString()])
+                # print self.pl_list
+            #h(self,self.welcome,self.pl_list)
+
+            charlist =["Car","Ralph","Panda1","Panda2"]
+            usedlist =[]
+            for l in self.pl_list :
+                pl = l[1].split(",")
+                usedlist.append(pl[1])
+                charlist.remove(pl[1])
+
+            print "Pick a Available Charactor", charlist
+            role = raw_input("")
+            print self.user[1]
+            print role
+            self.cManager.sendRequest(Constants.CMSG_CREATE_CHARACTER, self.user[1]+" "+role)
+            # self.world.CharSelect(self.welcome,self.pl_list)
+
+        else :
+            print "Username Or Password invalid"
+
+    def processingCreateResponse(self, data):
+        self.msg1 = data.getInt32()
+        if self.msg1:
+            self.pl_list = []
+            self.name = data.getString()
+            self.char = data.getString()
+            self.pl_count = data.getInt32()
+            for num in range (0,self.pl_count):
+                self.pl_list.append([num+1,data.getString()])
+                # print self.pl_list
+
+        self.Start(self.name,self.char,self.pl_count,self.pl_list)
 
 w = World()
 run()

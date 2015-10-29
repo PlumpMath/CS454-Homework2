@@ -8,7 +8,12 @@ class ResponseMove(ServerResponse):
     def execute(self, conn, data):
 
         try:
-            self.msg = data.getString()
+            self.username = data.getString()
+            self.x = data.getFloat()
+            self.y = data.getFloat()
+            self.z = data.getFloat()
+            self.h = data.getFloat()
+            self.isMoving = data.getInt32()
 
             print "ResponseMove - ", self.msg
 

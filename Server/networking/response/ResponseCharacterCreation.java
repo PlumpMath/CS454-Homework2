@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import database.DbClient;
-import database.DbInteract;
+import database.DbConnect;
 import metadata.Constants;
 import utility.GamePacket;
 
@@ -50,7 +50,7 @@ public class ResponseCharacterCreation extends GameResponse {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DbConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         ResultSet resultlist = connect.Query("select * from connectedPlayers;");
@@ -66,7 +66,7 @@ public class ResponseCharacterCreation extends GameResponse {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DbConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
       	  	return packet.getBytes();
         }
