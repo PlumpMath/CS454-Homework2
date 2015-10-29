@@ -12,9 +12,8 @@ from direct.interval.IntervalGlobal import Sequence
 from direct.showbase.DirectObject import DirectObject
 
 class User:
-	def __init__(self, username, world, x, y, z, h, isMoving, modelName):
+	def __init__(self, username, x, y, z, h, isMoving, modelName):
 		self.username = username
-		self.world = world
 		self.x = x
 		self.y = y
 		self.z = z
@@ -44,6 +43,8 @@ class User:
     	self.user.setPos(x,y,z)
     	self.user.setH(h)
     	self.isMoving = isMoving
+
+
 
 
 
