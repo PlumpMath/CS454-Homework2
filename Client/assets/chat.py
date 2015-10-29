@@ -40,6 +40,7 @@ class Chat:
                         frameSize=(-1, 0.7, -1, 0.6),#(Left,Right,Bottom,Top)
                         pos=(-1, 0, -0.5) #(X,Y,Z)
                         )
+                        
         def setText(textEntered):
             #TO DO : implent function send message
             user = "Maxime"
@@ -60,14 +61,15 @@ class Chat:
                     #send message to server
                 else:
                     txt = user + " : " + textEntered
+                    self.world.cManager.sendRequest(Constants.CMSG_CHAT, textEntered)
                     self.printMessage(txt)
                     #TODO
                     #send message to server
 
-        #clear the text
-        def clearText():
-            #entry.enterText('')
-            test = "test"
+    #clear the text
+    def clearText():
+        #entry.enterText('')
+        test = "test"
 
         entry = DirectEntry(
                     parent = chatFrame,

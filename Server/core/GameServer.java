@@ -133,15 +133,15 @@ public class GameServer {
      * @param username holds the username
      * @return the GameClient thread
      */
-    /*public GameClient getThreadByPlayerUserName(String userName) {
+    public GameClient getThreadByPlayerUserName(String userName) {
         for (GameClient aClient : activeThreads.values()) {
-            if (aClient.getPlayer().getUsername().equals(userName)) {
+            if (aClient.getUsername().equals(userName)) {
                 return aClient;
             }
         }
 
         return null;
-    }*/
+    }
 
     public int getNumberOfCurrentThreads() {
         return activeThreads.size();
@@ -193,7 +193,7 @@ public class GameServer {
      * @param username holds the username
      * @param response is the instance containing the response information
      */
-    /*public void addResponseForUser(String username, GameResponse response) {
+    public void addResponseForUser(String username, GameResponse response) {
         GameClient client = getThreadByPlayerUserName(username);
 
         if (client != null) {
@@ -201,7 +201,7 @@ public class GameServer {
         } else {
             System.out.println("In addResponseForUser--client is null");
         }
-    }*/
+    }
 
     /**
      * Push a pending response to all users' queue except one user.
@@ -209,9 +209,9 @@ public class GameServer {
      * @param player_id holds the excluding player ID
      * @param response is the instance containing the response information
      */
-    public void addResponseForAllOnlinePlayers(String player_id, GameResponse response) {
+    public void addResponseForAllOnlinePlayers(String username, GameResponse response) {
         for (GameClient client : activeThreads.values()) {
-            if (!client.getUsername().equals(player_id)) {
+            if (!client.getUsername().equals(username)) {
                 client.addResponseForUpdate(response);
             }
         }
