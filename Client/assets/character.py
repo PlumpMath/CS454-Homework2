@@ -70,9 +70,23 @@ class Character:
         if (self.world.keyMap["right"]!=0):
             self.world.player.setH(self.world.player.getH() - 300 * globalClock.getDt())
         if (self.world.keyMap["forward"]!=0):
-            self.world.player.setY(self.world.player, -self.moveSpeed * globalClock.getDt())
+            #calculate newPosition
+            move = -self.moveSpeed * globalClock.getDt()
+            self.world.player.setY(self.world.player, move)
+            if(self.isMovePossible(self.world.player.getPos()) is True):
+                #do somethig
+                x = True
+            else:
+                self.world.player.setY(self.world.player, -move)
+
         if (self.world.keyMap["backward"]!=0):
-            self.world.player.setY(self.world.player, self.moveSpeed * globalClock.getDt())
+            move = self.moveSpeed * globalClock.getDt()
+            self.world.player.setY(self.world.player, move)
+            if(self.isMovePossible(self.world.player.getPos()) is True):
+                #do somethig
+                x = True
+            else:
+                self.world.player.setY(self.world.player, -move)
 
         # If ralph is moving, loop the run animation.
         # If he is standing still, stop the animation.
@@ -122,24 +136,14 @@ class Character:
 
 
 
-    '''def isMovePossible(self,newPosition):
+    def isMovePossible(self,newPosition):
         possibleMove = True
-        for : # every characters on the map
+        '''characters = null
+        for character in characters :
             possibleMove = self.detectCollision(newPosition, character)
             if possibleMove is False :
-                return possibleMove
-        return possibleMove'''
-        # for : # every characters on the map
-        #     possibleMove = self.detectCollision(newPosition, character)
-        #     if possibleMove is False :
-        #         return possibleMove
-        # return possibleMove
-
-        #for : # every characters on the map
-        #    possibleMove = self.detectCollision(newPosition, character)
-        #    if possibleMove is False :
-        #        return possibleMove
-        #return possibleMove
+                return possibleMove'''
+        return possibleMove
 
     def detectCollision(self, newPosition, character) :
         d = (newPosition - character.getPos()).length
