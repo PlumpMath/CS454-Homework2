@@ -72,7 +72,6 @@ class World(DirectObject):
 
         # add spheres
         earth = Earth(self)
-
         sun = Sun(self)
         venus = Venus(self)
 

@@ -31,16 +31,16 @@ class Sun():
 		self.world.sun.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
 	def rotatePlanets(self, player, task):
-		if (self.isRotating is False and (self.world.sun.getPos() - player.getPos()).length() < 10):
+		if (self.isRotating is False and (self.world.sun.getPos() - player.getPos()).length() < 5):
 			print("start")
 			self.start_rotating = task.time
 			self.isRotating = True
 
 		if (self.isRotating is True):
 			do = task.time - self.start_rotating
-			self.world.sun.setH(self.world.sun.getH() + 10)
+			self.world.sun.setH(self.world.sun.getH() + 5)
 
-		if (self.isRotating is True and (self.world.sun.getPos() - player.getPos()).length() > 10):
+		if (self.isRotating is True and (self.world.sun.getPos() - player.getPos()).length() > 5):
 			self.isRotating = False
 		return task.cont
 
@@ -60,16 +60,16 @@ class Venus():
 		self.world.venus.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
 	def rotatePlanets(self, player, task):
-		if (self.isRotating is False and (self.world.venus.getPos() - player.getPos()).length() < 10):
+		if (self.isRotating is False and (self.world.venus.getPos() - player.getPos()).length() < 5):
 			print("start")
 			self.start_rotating = task.time
 			self.isRotating = True
 
 		if (self.isRotating is True):
 			do = task.time - self.start_rotating
-			self.world.venus.setH(self.world.venus.getH() + 10)
+			self.world.venus.setH(self.world.venus.getH() + 5)
 
-		if (self.isRotating is True and (self.world.venus.getPos() - player.getPos()).length() > 10):
+		if (self.isRotating is True and (self.world.venus.getPos() - player.getPos()).length() > 5):
 			self.isRotating = False
 		return task.cont
 
@@ -90,16 +90,16 @@ class Earth():
 		self.world.earth.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
 	def rotatePlanets(self, player, task):
-		if (self.isRotating is False and (self.world.earth.getPos() - player.getPos()).length() < 10):
+		if (self.isRotating is False and (self.world.earth.getPos() - player.getPos()).length() < 5):
 			print("start")
 			self.start_rotating = task.time
 			self.isRotating = True
 
 		if (self.isRotating is True):
 			do = task.time - self.start_rotating
-			self.world.earth.setH(self.world.earth.getH() + 10)
+			self.world.earth.setH(self.world.earth.getH() + 5)
 
-		if (self.isRotating is True and (self.world.earth.getPos() - player.getPos()).length() > 10):
+		if (self.isRotating is True and (self.world.earth.getPos() - player.getPos()).length() > 5):
 			self.isRotating = False
 		return task.cont
 
