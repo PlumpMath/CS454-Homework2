@@ -2,10 +2,10 @@ package database;
 
 public class DbClient extends DbConnect {
 
-	    public DbClient(String login, String password, String db, String host, String port)  {
+	    public DbClient()  {
 
-	        
-	        super(login, password, db, host, port);
+	    	
+	        super("cs454user", "cs454pwd","hw2db", "localhost", "3306");
 
 	    }	
 }

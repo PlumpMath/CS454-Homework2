@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class DbInteract {
 
 
-	    private static final DbClient connect = new DbClient("cs454user", "cs454pwd","cs454db", "db4free.net ", "3306");
+	    private static final DbClient connect = new DbClient();
 
 
 	    public static int obtenerNumRegistros() {

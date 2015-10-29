@@ -120,7 +120,7 @@ public class ResponseCharacterCreation extends GameResponse {
   	}
   	*/
   	
-  	private static final DbClient connect = new DbClient("cs454user", "cs454pwd","hw2db", "localhost", "3306");
+  	private static final DbClient connect = new DbClient();
 
 
     private boolean addPlayer(String user, String charactor) {

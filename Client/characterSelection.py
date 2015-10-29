@@ -17,6 +17,7 @@ from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import Sequence
 from common.Constants import Constants
+from panda3d.core import NodePath
 
 class characterSelection(DirectObject):
 
@@ -25,11 +26,16 @@ class characterSelection(DirectObject):
 
 	def __init__(self,world):
 		self.world = world
+		# self.set1 = ModelSet("set1")
+		# self.set1.reparentTo(self.render)
 		frame = DirectFrame(frameColor=(0, 0, 0, 1), #(R,G,B,A)
 		frameSize=(-1, 1, -1, 1),#(Left,Right,Bottom,Top)
 		pos=(-0.5, 0, 0.5))
 		self.createSelectWindow()
 	# def createLoginWindow(self):
+
+	def ModelSet(name="set1"):
+		return NodePath(name)
 
 	def createSelectWindow(self):
 		print self.world.welcome, self.world.userList
@@ -134,7 +140,7 @@ class characterSelection(DirectObject):
 			self.destroyWindow()
 
 
-			self.world.Game(self.name,self.char,self.pl_count,self.pl_list)
+			# self.world.Game(self.name,self.char,self.pl_count,self.pl_list)
 
 			# self.world.CharSelect(self.welcome,self.pl_list)
 		else :
@@ -144,3 +150,6 @@ class characterSelection(DirectObject):
 		self.frame.destroy()
 		self.textObject.destroy()
 		self.window.destroy()
+		# for m in self.set1.getChildren():
+		# 	m.destroy()
+		# 	self.set1.removeNode()

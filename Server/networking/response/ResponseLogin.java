@@ -94,7 +94,7 @@ public class ResponseLogin extends GameResponse {
   		this.password = password;
   	}
   	
-  	private static final DbClient connect = new DbClient("cs454user", "cs454pwd","hw2db", "localhost", "3306");
+  	private static final DbClient connect = new DbClient();
 
 
     private int validateUser(String user, String pwd) {
