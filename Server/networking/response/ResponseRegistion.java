@@ -54,7 +54,7 @@ public class ResponseRegistion extends GameResponse {
       this.password = password;
     }
     
-    private static final DbClient connect = new DbClient("cs454user", "cs454pwd","hw2db", "localhost", "3306");
+    private static final DbClient connect = new DbClient();
 
 
     private boolean addUser(String user, String pwd) {
