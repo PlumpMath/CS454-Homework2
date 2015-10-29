@@ -95,12 +95,6 @@ class World(DirectObject):
         else :
             player = Ralph(self)
 
-        player = Car(self)
-
-
-        # player = Panda(self)
-        # player = Car(self)
-
 
 
         taskMgr.add(player.move,"moveTask" )
