@@ -48,6 +48,18 @@ class User:
     	self.user.setH(h)
     	self.isMoving = isMoving
 
+    def getX():
+    	return self.x
+
+    def getY():
+    	return self.y
+
+    def getZ():
+    	return self.x
+
+    def getH():
+    	return self.h
+
 
 
 
