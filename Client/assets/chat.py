@@ -94,11 +94,7 @@ class Chat:
             label.setPos(-.48+(width/40),0,self.msgPosition)
             self.msgPosition -= CHAT_TXT_SCALE
 
-    #TODO
-    #function that cut messages too long for the chat box
     def cutMessage(self, txt):
-        #numLines = len(txt)/35
-        #txtArray = txt.split(" ", numLines)
         n = 34
         txtArray = [txt[i:i+n] for i in range(0, len(txt), n)]
         return txtArray

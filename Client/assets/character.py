@@ -124,7 +124,6 @@ class Character:
 
     '''def isMovePossible(self,newPosition):
         possibleMove = True
-<<<<<<< HEAD
         for : # every characters on the map
             possibleMove = self.detectCollision(newPosition, character)
             if possibleMove is False :
@@ -141,7 +140,7 @@ class Character:
         #    if possibleMove is False :
         #        return possibleMove
         #return possibleMove
-
+        
     def detectCollision(self, newPosition, character) :
         d = (newPosition - character.getPos()).length
         if( d < self.radius + character.radius ):
