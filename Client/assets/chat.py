@@ -47,7 +47,9 @@ class Chat:
                 self.hideChat()
             else:
                 #send message
-                self.printMessage("Maxime",textEntered)
+                user = "Maxime"
+                txt = user + " : " + textEntered
+                self.printMessage(txt)
 
         #clear the text
         def clearText():
@@ -73,37 +75,30 @@ class Chat:
                         canvasSize = (-.5,.45,-2,2),
                         frameSize = (-.5,.51,-.5,.5))
         self.scrollFrame.setPos(0.17, 0, 0.1)
-        label = DirectLabel(parent = self.scrollFrame.getCanvas(),text = "Welcome to the Chat",scale =  CHAT_TXT_SCALE)
-        width = label.getWidth()
-        label.setPos(-.48+(width/40),0,self.msgPosition)
-        self.msgPosition -= CHAT_TXT_SCALE
-        label2 = DirectLabel(parent = self.scrollFrame.getCanvas(),text = "To Close the chat box enter /q",scale = CHAT_TXT_SCALE)
-        width = label2.getWidth()
-        label2.setPos(-.48+(width/40),0,self.msgPosition)
-        self.msgPosition -= CHAT_TXT_SCALE
-        label3 = DirectLabel(parent = self.scrollFrame.getCanvas(),text = "To send a private message enter /m followed by the player ID and your message",scale = CHAT_TXT_SCALE)
-        width = label3.getWidth()
-        label3.setPos(-.48+(width/40),0,self.msgPosition)
+
+        self.printMessage("Welcome to the Chat")
+        self.printMessage("To Close the chat box enter /q")
+        self.printMessage("To send a private message enter /m followed by the player ID and your message")
+
         return chatFrame
 
-    def printMessage(self, user, msg):
-        label = DirectLabel(
-            parent = self.scrollFrame.getCanvas(),
-            text = user+" : "+msg,
-            scale = CHAT_TXT_SCALE
-            )
-        width = label.getWidth()
-        label.setPos(-.48+(width/40),0,self.msgPosition)
-        self.msgPosition -= CHAT_TXT_SCALE
+    def printMessage(self, txt):
+        txtArray = self.cutMessage(txt)
+        for t in txtArray :
+            label = DirectLabel(
+                parent = self.scrollFrame.getCanvas(),
+                text = t,
+                scale = CHAT_TXT_SCALE
+                )
+            width = label.getWidth()
+            label.setPos(-.48+(width/40),0,self.msgPosition)
+            self.msgPosition -= CHAT_TXT_SCALE
 
-    #TODO     
+    #TODO
     #function that cut messages too long for the chat box
-    def cutMesage(self, txt):
-        nextxt = txt[len(txt)-1]
-
-        if(len(newtxt)*CHAT_TXT_SCALE * CHAT_CHAR_WIDTH_RATIO > 0.95):
-            #Cut the string
-            new
-            txtArray = cutMesage(txt)
-
+    def cutMessage(self, txt):
+        #numLines = len(txt)/35
+        #txtArray = txt.split(" ", numLines)
+        n = 34
+        txtArray = [txt[i:i+n] for i in range(0, len(txt), n)]
         return txtArray
