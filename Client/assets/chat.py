@@ -15,7 +15,6 @@ class Chat:
         self.hideChat()
         self.chat = 0
         self.loadControls()
-
         taskMgr.add(self.showChat,"Show Chat")
 
     def hideChat(self):
@@ -43,13 +42,27 @@ class Chat:
                         )
         def setText(textEntered):
             #TO DO : implent function send message
+            user = "Maxime"
             if(textEntered == "/q" or textEntered == "/Q"):
                 self.hideChat()
             else:
-                #send message
-                user = "Maxime"
-                txt = user + " : " + textEntered
-                self.printMessage(txt)
+                txtArray = textEntered.split(' ', textEntered.count(' '))
+                if(txtArray[0] == "/m"):
+                    print "Private Message"
+                    dest = txtArray[1]
+                    txt = ''
+                    for i in range(2,len(txtArray)):
+                        txt += txtArray[i]
+                        txt += ' '
+                    txt = user + ' to ' + dest + ' : ' + txt
+                    self.printMessage(txt)
+                    #TODO
+                    #send message to server
+                else:
+                    txt = user + " : " + textEntered
+                    self.printMessage(txt)
+                    #TODO
+                    #send message to server
 
         #clear the text
         def clearText():
