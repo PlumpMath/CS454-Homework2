@@ -140,7 +140,7 @@ class Character:
         #    if possibleMove is False :
         #        return possibleMove
         #return possibleMove
-        
+
     def detectCollision(self, newPosition, character) :
         d = (newPosition - character.getPos()).length
         if( d < self.radius + character.radius ):
@@ -174,16 +174,17 @@ class Panda(Character):
         self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0}
 
         # Create the main character, Ralph
-        self.world.player = Actor("models/panda-model")
+        self.world.player = Actor("models/panda-model",
+                                {"run": "models/panda-walk4"})
         self.world.player.reparentTo(render)
-        self.world.player.setScale(0.004)
+        self.world.player.setScale(0.003)
         self.world.player.setPos(10,10,0)
         base.camera.setPos(self.world.player.getX(),self.world.player.getY()+10,2)
         base.disableMouse()
 
         self.loadControls()
         self.world.isMoving = False
-        self.moveSpeed = 1000
+        self.moveSpeed = 1500
         self.radius = 20
 class Car(Character):
     def __init__(self, world):
