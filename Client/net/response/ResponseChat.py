@@ -10,7 +10,7 @@ class ResponseChat(ServerResponse):
         try:
             self.msg = data.getString()
 
-            print "ResponseChat - ", self.msg
+            self.chat.printMessage(message)
 
             #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 

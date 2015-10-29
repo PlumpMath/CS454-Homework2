@@ -16,7 +16,7 @@ public class RequestChat extends GameRequest {
     private ResponseChat responseChat;
 
     public RequestChat() {
-        responses.add(responseChat = new ResponseChat());
+        responseChat = new ResponseChat();
     }
 
     @Override
@@ -26,6 +26,17 @@ public class RequestChat extends GameRequest {
 
     @Override
     public void doBusiness() throws Exception {
-        responseChat.setMessage(message);
+        if(message.substring(0, 3).toLowerCase().equals("/m "))
+        {
+          String[] messaging = message.split();
+          message = message.replace(messaging[0] + messaging[1], "");
+          responseChat.setMessage("Whisper from "this.client.getUsername() + " : " + message);
+
+          this.client.getServer().addResponseForUser(messaging[1], responseMove);
+        }
+        else
+        {
+          responseChat.setMessage(this.client.getUsername() + " : " + message);
+        }
     }
 }

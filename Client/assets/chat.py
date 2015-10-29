@@ -41,20 +41,21 @@ class Chat:
                         frameSize=(-1, 0.7, -1, 0.6),#(Left,Right,Bottom,Top)
                         pos=(-1, 0, -0.5) #(X,Y,Z)
                         )
-        def setText(textEntered):
-            #TO DO : implent function send message
-            if(textEntered == "/q" or textEntered == "/Q"):
-                self.hideChat()
-            else:
-                #send message
-                user = "Maxime"
-                txt = user + " : " + textEntered
-                self.printMessage(txt)
+    def setText(textEntered):
+        #TO DO : implent function send message
+        if(textEntered == "/q" or textEntered == "/Q"):
+            self.hideChat()
+        else:
+            #send message
+            user = "Maxime"
+            txt = user + " : " + textEntered
+            self.world.cManager.sendRequest(Constants.CMSG_CHAT, textEntered)
+            self.printMessage(txt)
 
-        #clear the text
-        def clearText():
-            #entry.enterText('')
-            test = "test"
+    #clear the text
+    def clearText():
+        #entry.enterText('')
+        test = "test"
 
         entry = DirectEntry(
                     parent = chatFrame,
