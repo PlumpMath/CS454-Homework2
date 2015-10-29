@@ -112,10 +112,10 @@ class characterSelection(DirectObject):
 	def clickedStart(self):
 		if(self.SelectChar is not ""):
 			print "You pressed Start", self.SelectChar
-			self.world.cManager.sendRequest(Constants.CMSG_CREATE_CHARACTER, self.user[1]+" "+self.SelectChar);
+			self.world.cManager.sendRequest(Constants.CMSG_CREATE_CHARACTER, self.user[1]+" "+self.SelectChar)
 
 	def clickedLogout(self):
-		self.world.cManager.sendRequest(Constants.CMSG_DISCONNECT, self.user[1]);
+		self.world.cManager.sendRequest(Constants.CMSG_DISCONNECT, self.user[1])
 
 
 

@@ -23,7 +23,8 @@ class ResponseLogin(ServerResponse):
 
         try:
             
-            conn.main.login.processingLoginResponse(data)
+            # conn.main.login.processingLoginResponse(data)
+            conn.main.processingLoginResponse(data)
 
         except:
             self.log('Bad [' + str(Constants.RAND_STRING) + '] String Response')
