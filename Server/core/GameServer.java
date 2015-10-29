@@ -209,9 +209,9 @@ public class GameServer {
      * @param player_id holds the excluding player ID
      * @param response is the instance containing the response information
      */
-    public void addResponseForAllOnlinePlayers(long player_id, GameResponse response) {
+    public void addResponseForAllOnlinePlayers(String player_id, GameResponse response) {
         for (GameClient client : activeThreads.values()) {
-            if (client.getId() != player_id) {
+            if (!client.getUsername().equals(player_id)) {
                 client.addResponseForUpdate(response);
             }
         }

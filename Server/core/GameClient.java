@@ -38,7 +38,7 @@ public class GameClient extends Thread {
     private OutputStream outputStream; // For use with outgoing responses
     private DataInputStream dataInputStream; // For use with incoming requests
     private DataInputStream dataInput;
-    //private Player player;
+    private String username;
     private boolean isPlaying;
     private Queue<GameResponse> updates; // Temporarily store responses for client
 
@@ -121,6 +121,29 @@ public class GameClient extends Thread {
             }
         }
 
+        // private static final DbClient connect = new DbClient("cs454user", "cs454pwd", "hw2db", "localhost", "3306");
+        //
+        // System.out.println("before db");
+        //
+        // String sql = "UPDATE players SET pos=?, isMoving=? WHERE username=?";
+        //
+        // c = DriverManager.getConnection( url, username, password );
+        // PreparedStatement pstmt = c.prepareStatement( sql );
+        // pstmt.setString( 1, x + "," + y + "," + z + "," + h );
+        // if(isMoving == 1)
+        // {
+        //   pstmt.setBoolean(2, true);
+        // }
+        // else
+        // {
+        //   pstmt.setBoolean(2, false);
+        // }
+        // pstmt.setString( 3, getUsername());
+        // pstmt.executeUpdate();
+        // } catch (SQLException ex) {
+        //     Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
+        // }
+
         System.out.println(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date()));
         System.out.println("The client stops playing.");
 
@@ -149,13 +172,13 @@ public class GameClient extends Thread {
         return server;
     }
 
-    /*public Player getPlayer() {
-        return player;
+    public String getUsername() {
+        return username;
     }
 
-    public Player setPlayer(Player player) {
-        return this.player = player;
-    }*/
+    public String setPlayer(String username) {
+        return this.username = username;
+    }
 
     public boolean addResponseForUpdate(GameResponse response) {
         return updates.add(response);
