@@ -12,9 +12,9 @@ class Chat:
         self.world = world
         self.msgPosition = 1.95
         self.chatFrame = self.addChat()
-        self.hideChat()
         self.chat = 0
         self.loadControls()
+        self.hideChat()
         taskMgr.add(self.showChat,"Show Chat")
 
     def hideChat(self):
@@ -40,7 +40,7 @@ class Chat:
                         frameSize=(-1, 0.7, -1, 0.6),#(Left,Right,Bottom,Top)
                         pos=(-1, 0, -0.5) #(X,Y,Z)
                         )
-                        
+
         def setText(textEntered):
             #TO DO : implent function send message
             user = "Maxime"
@@ -66,10 +66,10 @@ class Chat:
                     #TODO
                     #send message to server
 
-    #clear the text
-    def clearText():
-        #entry.enterText('')
-        test = "test"
+        #clear the text
+        def clearText():
+            #entry.enterText('')
+            test = "test"
 
         entry = DirectEntry(
                     parent = chatFrame,
