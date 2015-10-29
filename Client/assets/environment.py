@@ -30,7 +30,7 @@ class Environment:
 
 
 	'''
-	def rotatePlanets(self, planet, player, task):
+	def rotatePlanets(self, planet, player, users, task):
 		if (self.isRotating is False and isClose(self, planet, player, users):
 			print("start")
 			self.start_rotating = task.time
