@@ -22,10 +22,10 @@ public class ResponseLogin extends GameResponse {
 
     @Override
     public byte[] constructResponseInBytes() {
-      
+
       int number = 0;
-      number = validateUser(username, password); 
-   
+      number = validateUser(username, password);
+
 
       if(number==1) {
     	  System.out.println("valid");
@@ -33,7 +33,7 @@ public class ResponseLogin extends GameResponse {
         GamePacket packet = new GamePacket(responseCode);
         packet.addInt32(number);
         packet.addString("Welcome "+username);
-        
+
         ResultSet resultcount = connect.Query("select count(*) from connectedPlayers;");
 
         try {
@@ -48,15 +48,17 @@ public class ResponseLogin extends GameResponse {
         } catch (SQLException ex) {
             Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ResultSet resultlist = connect.Query("select * from connectedPlayers;");
-        
+
         try {
             while (resultlist.next()) {
-            	
+
                 System.out.println("hi test"+resultlist.getString("username"));
                 System.out.println("hi test"+resultlist.getString("model"));
-                
+
+                  this.client.setUsername(resultlist.getString("username"));
+
                 packet.addString(resultlist.getString("username")+","+resultlist.getString("model"));
 
 
@@ -64,9 +66,7 @@ public class ResponseLogin extends GameResponse {
         } catch (SQLException ex) {
             Logger.getLogger(DbInteract.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
         return packet.getBytes();
       }
       else {
@@ -75,7 +75,7 @@ public class ResponseLogin extends GameResponse {
         packet.addInt32(number);
         return packet.getBytes();
       }
-      
+
     }
 
     public String getUsername() {
@@ -93,13 +93,18 @@ public class ResponseLogin extends GameResponse {
   	public void setPassword(String password) {
   		this.password = password;
   	}
+<<<<<<< HEAD
   	
   	private static final DbClient connect = new DbClient();
+=======
+
+  	private static final DbClient connect = new DbClient("cs454user", "cs454pwd","hw2db", "localhost", "3306");
+>>>>>>> origin/master
 
 
     private int validateUser(String user, String pwd) {
         System.out.println("before db");
-        
+
         ResultSet result = connect.Query("select * from players where username='"+user+"';");
         System.out.println("after");
         try {

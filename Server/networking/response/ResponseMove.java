@@ -5,7 +5,7 @@ import metadata.Constants;
 import utility.GamePacket;
 
 public class ResponseMove extends GameResponse {
-
+    private String username;
     private float x;
     private float y;
     private float z;
@@ -19,6 +19,7 @@ public class ResponseMove extends GameResponse {
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
+        packet.addString(username);
         packet.addFloat(x);
         packet.addFloat(y);
         packet.addFloat(z);
@@ -26,6 +27,14 @@ public class ResponseMove extends GameResponse {
         packet.addInt32(isMoving);
 
         return packet.getBytes();
+    }
+
+    public String getUsername() {
+      return username;
+    }
+
+    public String setUsername() {
+      this.username = username;
     }
 
     public float getX() {
