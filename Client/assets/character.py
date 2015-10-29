@@ -124,19 +124,12 @@ class Character:
 
     def isMovePossible(self,newPosition):
         possibleMove = True
-<<<<<<< HEAD
+        
         # for : # every characters on the map
         #     possibleMove = self.detectCollision(newPosition, character)
         #     if possibleMove is False :
         #         return possibleMove
         # return possibleMove
-=======
-        #for : # every characters on the map
-        #    possibleMove = self.detectCollision(newPosition, character)
-        #    if possibleMove is False :
-        #        return possibleMove
-        return possibleMove
->>>>>>> origin/master
 
     def detectCollision(self, newPosition, character) :
         d = (newPosition - character.getPos()).length
