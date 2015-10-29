@@ -40,7 +40,10 @@ class User:
         self.user.setScale(0.003)
         self.user.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),0)
 
-    #def updateUserPos(self, username, x, y, z, h, isMoving):
+    def updateUserPos(self, x, y, z, h, isMoving):
+    	self.user.setPos(x,y,z)
+    	self.user.setH(h)
+    	self.isMoving = isMoving
 
 
 
