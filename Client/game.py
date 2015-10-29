@@ -27,14 +27,14 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "assets"))
 from controls import Control
 from character import *
 from chat import *
-#from environment import Environment
+from environment import *
 from common.Constants import Constants
 from net.ConnectionManager import ConnectionManager
 
 SPEED = 0.5
 
 class World(DirectObject):
-
+    
     def startConnection(self):
         """Create a connection to the remote host.
 
@@ -60,7 +60,6 @@ class World(DirectObject):
         # Set up the environment
         #
 
-        #self.interface = Interface()
         self.environ = loader.loadModel("models/square")
         self.environ.reparentTo(render)
         self.environ.setPos(0,0,0)
@@ -72,13 +71,16 @@ class World(DirectObject):
         self.floater.reparentTo(render)
 
         # add spheres
-        #self.sun = Environment(self)
+        earth = Earth(self)
+
+        sun = Sun(self)
+        venus = Venus(self)
 
 
 
         controls = Control()
         chat = Chat(self)
-        player = Panda(self)
+        player = Ralph(self)
 
 
         # player = Panda(self)
@@ -86,7 +88,10 @@ class World(DirectObject):
 
 
 
-        taskMgr.add(player.move,"moveTask")
+        taskMgr.add(player.move,"moveTask" )
+        taskMgr.add(sun.rotatePlanets,"rotateSun", extraArgs = [self.player], appendTask = True)
+        taskMgr.add(earth.rotatePlanets,"rotateEarth", extraArgs = [self.player], appendTask = True)
+        taskMgr.add(venus.rotatePlanets,"rotateVenus", extraArgs = [self.player], appendTask = True)
 
 
         # Create some lighting

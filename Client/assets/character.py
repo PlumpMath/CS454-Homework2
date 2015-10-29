@@ -80,19 +80,13 @@ class Character:
             if self.world.isMoving is False:
                 self.world.player.loop("run")
                 self.world.isMoving = True
-                self.world.connection.moveRequest(self.world.player.getX(),
-                                                  self.world.player.getY(),
-                                                  self.world.player.getZ(),
-                                                  self.world.player.getH(), 1)
+                
         else:
             if self.world.isMoving:
                 self.world.player.stop()
                 self.world.player.pose("walk",5)
                 self.world.isMoving = False
-                self.world.connection.moveRequest(self.world.player.getX(),
-                                                  self.world.player.getY(),
-                                                  self.world.player.getZ(),
-                                                  self.world.player.getH(), 0)
+               
 
         # If the camera is too far from ralph, move it closer.
         # If the camera is too close to ralph, move it farther.
@@ -121,13 +115,13 @@ class Character:
 
 
 
-    def isMovePossible(self,newPosition):
+    '''def isMovePossible(self,newPosition):
         possibleMove = True
         for : # every characters on the map
             possibleMove = self.detectCollision(newPosition, character)
             if possibleMove is False :
                 return possibleMove
-        return possibleMove
+        return possibleMove'''
 
     def detectCollision(self, newPosition, character) :
         d = (newPosition - character.getPos()).length

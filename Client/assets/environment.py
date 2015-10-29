@@ -11,75 +11,97 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import Sequence
 from direct.showbase.DirectObject import DirectObject
 
-class Environment:
 
-	def __init__():
-		self.isRotating = False
+
+
+
+class Sun():
+
+	def __init__(self, world):
+		# Create the spheres
+		self.isRotating= False
+		self.world = world
+
+		#The sun
+		self.world.sun = loader.loadModel("models/planet_sphere")
+		self.world.sun_tex = loader.loadTexture("models/sun_1k_tex.jpg")
+		self.world.sun.setTexture(self.world.sun_tex, 1)
+		self.world.sun.reparentTo(render)
+		self.world.sun.setScale(1.2)
+		self.world.sun.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
 	def rotatePlanets(self, player, task):
-		if (self.isRotating is False and (self.world.planet.getPos() - player.getPos()).length() < 10):
+		if (self.isRotating is False and (self.world.sun.getPos() - player.getPos()).length() < 10):
 			print("start")
 			self.start_rotating = task.time
 			self.isRotating = True
 
 		if (self.isRotating is True):
-			print("ok")
 			do = task.time - self.start_rotating
-			self.setH(self.world..getH() + 10)
+			self.world.sun.setH(self.world.sun.getH() + 10)
+
+		if (self.isRotating is True and (self.world.sun.getPos() - player.getPos()).length() > 10):
+			self.isRotating = False
 		return task.cont
 
-
-
-
-class Sun(Environment):
+class Venus():
 
 	def __init__(self, world):
-		# Create the spheres
-		self.world = world
-
-		#The sun
-		self.world.planet = loader.loadModel("models/planet_sphere")
-		self.world.planet_tex = loader.loadTexture("models/sun_1k_tex.jpg")
-		self.world.planet.setTexture(self.world.planet_tex, 1)
-		self.world.planet.reparentTo(render)
-		self.world.planet.setScale(1.2)
-		self.world.planet.setPos(random.randrange(10,15, 2),random.randrange(10, 15, 2),3)
-		#self.world.planet.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
-
-
-
-class Venus(Environment):
-
-	def __init__(self, world):
+		self.isRotating= False
 		# Create the spheres
 		self.world = world
 
 		#The venus
-		self.world.planet = loader.loadModel("models/planet_sphere")
-		self.world.planet_tex = loader.loadTexture("models/venus_1k_tex.jpg")
-		self.world.planet.setTexture(self.world.planet_tex, 1)
-		self.world.planet.reparentTo(render)
-		self.world.planet.setScale(1.2)
-		self.world.planet.setPos(random.randrange(10,15, 2),random.randrange(10, 15, 2),3)
-		#self.world.planet.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
+		self.world.venus = loader.loadModel("models/planet_sphere")
+		self.world.venus_tex = loader.loadTexture("models/venus_1k_tex.jpg")
+		self.world.venus.setTexture(self.world.venus_tex, 1)
+		self.world.venus.reparentTo(render)
+		self.world.venus.setScale(1.2)
+		self.world.venus.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
+
+	def rotatePlanets(self, player, task):
+		if (self.isRotating is False and (self.world.venus.getPos() - player.getPos()).length() < 10):
+			print("start")
+			self.start_rotating = task.time
+			self.isRotating = True
+
+		if (self.isRotating is True):
+			do = task.time - self.start_rotating
+			self.world.venus.setH(self.world.venus.getH() + 10)
+
+		if (self.isRotating is True and (self.world.venus.getPos() - player.getPos()).length() > 10):
+			self.isRotating = False
+		return task.cont
 
 
-
-class Earth(Environment):
+class Earth():
 
 	def __init__(self, world):
+		self.isRotating= False
 		# Create the spheres
 		self.world = world
 
 		#The earth
-		self.world.planet = loader.loadModel("models/planet_sphere")
-		self.world.planet_tex = loader.loadTexture("models/earth_1k_tex.jpg")
-		self.world.planet.setTexture(self.world.planet_tex, 1)
-		self.world.planet.reparentTo(render)
-		self.world.planet.setScale(1.2)
-		self.world.planet.setPos(random.randrange(10,15, 2),random.randrange(10, 15, 2),3)
-		#self.world.planet.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
+		self.world.earth = loader.loadModel("models/planet_sphere")
+		self.world.earth_tex = loader.loadTexture("models/earth_1k_tex.jpg")
+		self.world.earth.setTexture(self.world.earth_tex, 1)
+		self.world.earth.reparentTo(render)
+		self.world.earth.setScale(1.2)
+		self.world.earth.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
+	def rotatePlanets(self, player, task):
+		if (self.isRotating is False and (self.world.earth.getPos() - player.getPos()).length() < 10):
+			print("start")
+			self.start_rotating = task.time
+			self.isRotating = True
+
+		if (self.isRotating is True):
+			do = task.time - self.start_rotating
+			self.world.earth.setH(self.world.earth.getH() + 10)
+
+		if (self.isRotating is True and (self.world.earth.getPos() - player.getPos()).length() > 10):
+			self.isRotating = False
+		return task.cont
 
 
 
