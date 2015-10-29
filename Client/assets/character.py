@@ -70,9 +70,9 @@ class Character:
         if (self.world.keyMap["right"]!=0):
             self.world.player.setH(self.world.player.getH() - 300 * globalClock.getDt())
         if (self.world.keyMap["forward"]!=0):
-            self.world.player.setY(self.world.player, -25 * globalClock.getDt())
+            self.world.player.setY(self.world.player, -self.moveSpeed * globalClock.getDt())
         if (self.world.keyMap["backward"]!=0):
-            self.world.player.setY(self.world.player, 25 * globalClock.getDt())
+            self.world.player.setY(self.world.player, self.moveSpeed * globalClock.getDt())
 
         # If ralph is moving, loop the run animation.
         # If he is standing still, stop the animation.
@@ -165,7 +165,7 @@ class Ralph(Character):
 
         self.loadControls()
         self.world.isMoving = False
-
+        self.moveSpeed = 25
         self.radius = 10
 
 class Panda(Character):
@@ -183,7 +183,7 @@ class Panda(Character):
 
         self.loadControls()
         self.world.isMoving = False
-
+        self.moveSpeed = 1000
         self.radius = 20
 class Car(Character):
     def __init__(self, world):
@@ -201,5 +201,5 @@ class Car(Character):
 
         self.loadControls()
         self.world.isMoving = False
-
+        self.moveSpeed = 25
         self.radius = 30
