@@ -1,5 +1,6 @@
 import random, sys, os, math, time
 from direct.gui.DirectGui import *
+from common.Constants import Constants
 #from direct.gui.DirectGui import DirectFrame, DirectEntry
 #import direct.directbase.DirectStart
 
@@ -12,10 +13,9 @@ class Chat:
         self.world = world
         self.msgPosition = 1.95
         self.chatFrame = self.addChat()
-        self.hideChat()
         self.chat = 0
         self.loadControls()
-
+        self.hideChat()
         taskMgr.add(self.showChat,"Show Chat")
 
     def hideChat(self):
@@ -41,19 +41,35 @@ class Chat:
                         frameSize=(-1, 0.7, -1, 0.6),#(Left,Right,Bottom,Top)
                         pos=(-1, 0, -0.5) #(X,Y,Z)
                         )
+
         def setText(textEntered):
             #TO DO : implent function send message
+            user = "Maxime"
             if(textEntered == "/q" or textEntered == "/Q"):
                 self.hideChat()
             else:
-                #send message
-                user = "Maxime"
-                txt = user + " : " + textEntered
-                self.printMessage(txt)
+                txtArray = textEntered.split(' ', textEntered.count(' '))
+                if(txtArray[0] == "/m"):
+                    print "Private Message"
+                    dest = txtArray[1]
+                    txt = ''
+                    for i in range(2,len(txtArray)):
+                        txt += txtArray[i]
+                        txt += ' '
+                    txt = user + ' to ' + dest + ' : ' + txt
+                    self.printMessage(txt)
+                    #TODO
+                    #send message to server
+                else:
+                    txt = user + " : " + textEntered
+                    self.world.cManager.sendRequest(Constants.CMSG_CHAT, textEntered)
+                    self.printMessage(txt)
+                    #TODO
+                    #send message to server
 
         #clear the text
         def clearText():
-            #entry.enterText('')
+            entry.enterText('')
             test = "test"
 
         entry = DirectEntry(

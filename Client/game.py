@@ -86,6 +86,7 @@ class World(DirectObject):
 
         controls = Control()
         chat = Chat(self)
+
         if pl_char == "Panda1"  or pl_char == "Panda2":
             print "hi"
             player = Panda(self)
@@ -94,6 +95,7 @@ class World(DirectObject):
         else :
             player = Ralph(self)
 
+        player = Car(self)
 
 
         # player = Panda(self)

@@ -5,12 +5,13 @@ from net.response.ServerResponse import ServerResponse
 
 class ResponseChat(ServerResponse):
 
+
     def execute(self, conn, data):
 
         try:
             self.msg = data.getString()
 
-            print "ResponseChat - ", self.msg
+            conn.main.chat.printMessage(message)
 
             #self.log('Received [' + str(Constants.RAND_STRING) + '] String Response')
 

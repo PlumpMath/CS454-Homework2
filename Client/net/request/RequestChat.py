@@ -7,12 +7,12 @@ from net.request.ServerRequest import ServerRequest
 class RequestChat(ServerRequest):
 
 
-    def send(self, message = None):
+    def send(self, message):
 
         try:
             pkg = PyDatagram()
             pkg.addUint16(Constants.CMSG_CHAT)
-            pkg.addString(args)
+            pkg.addString(message)
 
             self.cWriter.send(pkg, self.connection)
 
