@@ -79,7 +79,7 @@ class World(DirectObject):
 
         controls = Control()
         chat = Chat(self)
-        player = Panda(self)
+        player = Car(self)
 
 
         # player = Panda(self)
