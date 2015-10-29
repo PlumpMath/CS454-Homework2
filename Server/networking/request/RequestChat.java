@@ -28,11 +28,11 @@ public class RequestChat extends GameRequest {
     public void doBusiness() throws Exception {
         if(message.substring(0, 3).toLowerCase().equals("/m "))
         {
-          String[] messaging = message.split();
+          String[] messaging = message.split(" ");
           message = message.replace(messaging[0] + messaging[1], "");
-          responseChat.setMessage("Whisper from "this.client.getUsername() + " : " + message);
+          responseChat.setMessage("Whisper from " + this.client.getUsername() + " : " + message);
 
-          this.client.getServer().addResponseForUser(messaging[1], responseMove);
+          this.client.getServer().addResponseForUser(messaging[1], responseChat);
         }
         else
         {
