@@ -21,7 +21,9 @@ class User:
 		self.isMoving = isMoving
 		self.modelName = modelName
 
-	def loadUser(self):
+		loadUser(self, x,y,z,h, modelName)
+
+	def loadUser(self, x, y, z, h, modelName):
 		
 		if modelName = "ralph" or "Ralph":
 			self.user = Actor("models/ralph",
@@ -37,7 +39,9 @@ class User:
 
         self.user.reparentTo(render)
         self.user.setScale(0.003)
-        self.user.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),0)
+        self.user.setPos(x,y,z)
+        self.user.setH(h)
+
 
     def updateUserPos(self, x, y, z, h, isMoving):
     	self.user.setPos(x,y,z)
