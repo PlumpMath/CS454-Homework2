@@ -3,6 +3,7 @@ package networking.request;
 // Java Imports
 import java.io.IOException;
 
+import database.DbClient;
 // Custom Imports
 //import core.GameServer;
 import networking.response.ResponseExitGame;
@@ -26,6 +27,9 @@ public class RequestExitGame extends GameRequest {
 
     @Override
     public void doBusiness() throws Exception {
+    	final DbClient connect = new DbClient();
+        connect.Update("delete from connectedPlayers where username = " + this.client.getUsername() + ";");
+        
         //responseExitGame.setNumber(number);
     }
 }

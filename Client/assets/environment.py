@@ -29,6 +29,35 @@ class Environment:
 		return task.cont
 
 
+	'''
+	def rotatePlanets(self, planet, player, task):
+		if (self.isRotating is False and isClose(self, planet, player, users):
+			print("start")
+			self.start_rotating = task.time
+			self.isRotating = True
+
+		if (self.isRotating is True):
+			do = task.time - self.start_rotating
+			planet.setH(planet.getH() + 5)
+
+		if (self.isRotating is True and not isClose(self, planet, player, users) ):
+			self.isRotating = False
+		return task.cont
+
+
+	def isClose(self, planet, player, users):
+		print('')
+		for user in users:
+			if (planet.getPos() - user.getPos()).length() < 5:
+				return True
+
+		if (planet.getPos() - player.getPos()).length() < 5:
+			return True
+
+		else return False
+		'''
+
+
 
 class Sun(Environment):
 

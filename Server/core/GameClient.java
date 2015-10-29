@@ -39,7 +39,7 @@ public class GameClient extends Thread {
     private OutputStream outputStream; // For use with outgoing responses
     private DataInputStream dataInputStream; // For use with incoming requests
     private DataInputStream dataInput;
-    private String username;
+    private String username = "";
     private boolean isPlaying;
     private Queue<GameResponse> updates; // Temporarily store responses for client
 
