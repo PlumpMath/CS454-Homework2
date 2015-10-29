@@ -66,6 +66,17 @@ public class ResponseLogin extends GameResponse {
         } catch (SQLException ex) {
             Logger.getLogger(DbConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        ResultSet result2 = connect.Query("Select p.username, c.model, p.pos, p.isMoving from connectedPlayers c, players p where p.username = c.username;");
+
+        try {
+            while (result2.next()) {
+                packet.addString(result2.getString("p.username")+","+result2.getString("c.model")
+                					+","+result2.getString("p.pos")+","+result2.getBoolean("p.isMoving"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return packet.getBytes();
       }

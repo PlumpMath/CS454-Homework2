@@ -26,7 +26,7 @@ public class RequestChat extends GameRequest {
 
     @Override
     public void doBusiness() throws Exception {
-        if(message.substring(0, 3).toLowerCase().equals("/m "))
+        if(message.length() > 3 && message.substring(0, 3).toLowerCase().equals("/m "))
         {
           String[] messaging = message.split(" ");
           message = message.replace(messaging[0] + messaging[1], "");
@@ -37,6 +37,7 @@ public class RequestChat extends GameRequest {
         else
         {
           responseChat.setMessage(this.client.getUsername() + " : " + message);
+          this.client.getServer().addResponseForAllOnlinePlayers(this.client.getUsername(), responseChat);
         }
     }
 }

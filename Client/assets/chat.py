@@ -58,14 +58,11 @@ class Chat:
                         txt += ' '
                     txt = user + ' to ' + dest + ' : ' + txt
                     self.printMessage(txt)
-                    #TODO
-                    #send message to server
                 else:
                     txt = user + " : " + textEntered
-                    self.world.cManager.sendRequest(Constants.CMSG_CHAT, textEntered)
                     self.printMessage(txt)
-                    #TODO
-                    #send message to server
+
+                self.world.cManager.sendRequest(Constants.CMSG_CHAT, textEntered)
 
         #clear the text
         def clearText():

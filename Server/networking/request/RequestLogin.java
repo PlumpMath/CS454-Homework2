@@ -32,6 +32,7 @@ public class RequestLogin extends GameRequest {
 
     @Override
     public void doBusiness() throws Exception {
+    	this.client.setUsername(username);
     	responseLogin.setGameClient(this.client);
         responseLogin.setUsername(username);
         responseLogin.setPassword(password);
