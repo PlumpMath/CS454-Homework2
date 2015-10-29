@@ -30,6 +30,7 @@ from chat import *
 from environment import *
 from common.Constants import Constants
 from net.ConnectionManager import ConnectionManager
+from users import *
 
 SPEED = 0.5
 
@@ -87,6 +88,7 @@ class World(DirectObject):
         controls = Control()
         chat = Chat(self)
 
+
         if pl_char == "Panda1"  or pl_char == "Panda2":
             print "hi"
             player = Panda(self)
@@ -94,6 +96,12 @@ class World(DirectObject):
             player = Car(self)
         else :
             player = Ralph(self)
+
+        #player = Car(self)
+
+
+        # player = Panda(self)
+        # player = Car(self)
 
 
 
@@ -142,6 +150,7 @@ class World(DirectObject):
         self.msg1 = data.getInt32()
         if self.msg1:
             self.pl_list = []
+            self.playersList = []
             self.user = data.getString().split(" ")
             self.pl_count = data.getInt32()
 
@@ -149,6 +158,12 @@ class World(DirectObject):
             print "No of players logged in- ", self.pl_count
             for num in range (0,self.pl_count):
                 self.pl_list.append([num+1,data.getString()])
+
+            for num in range (0,self.pl_count):
+                playerTemp = data.getString().split(",")
+                self.playersList.append([User(playerTemp[0], float(playerTemp[2]), float(playerTemp[3])
+                                            float(playerTemp[4]), float(playerTemp[5]),
+                                            int(playerTemp[6]), playerTemp[1])])
                 # print self.pl_list
             #h(self,self.welcome,self.pl_list)
 

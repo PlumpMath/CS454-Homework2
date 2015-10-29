@@ -100,6 +100,7 @@ public class GameServer {
                     GameClient client = new GameClient(clientSocket, this);
                     // Run the thread
                     client.start();
+                    addToActiveThreads(client);
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }

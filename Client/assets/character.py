@@ -27,15 +27,10 @@ class Character:
         self.world.accept("a", self.setKey, ["left",1])
         self.world.accept("s", self.setKey, ["backward",1])
         self.world.accept("d", self.setKey, ["right",1])
-        self.world.accept("shift-w", self.setKey, ["run-forward",1])
         self.world.accept("w-up", self.setKey, ["forward",0])
         self.world.accept("a-up", self.setKey, ["left",0])
         self.world.accept("s-up", self.setKey, ["backward",0])
         self.world.accept("d-up", self.setKey, ["right",0])
-        self.world.accept("shift-w-up", self.setKey, ["run-forward",0])
-        self.world.accept("shift-up", self.setKey, ["run-forward",0])
-        #self.world.accept("r", self.setKey, ["run",1])
-        #self.world.accept("r-up", self.setKey, ["run",1])
 
         self.world.accept("arrow_left", self.setKey, ["left",1])
         self.world.accept("arrow_right", self.setKey, ["right",1])
@@ -75,10 +70,8 @@ class Character:
         if (self.world.keyMap["right"]!=0):
             self.world.player.setH(self.world.player.getH() - 300 * globalClock.getDt())
         if (self.world.keyMap["forward"]!=0):
-            if(self.world.running is True):
-                move = -self.moveSpeed * globalClock.getDt()*2
-            else:
-                move = -self.moveSpeed * globalClock.getDt()
+            #calculate newPosition
+            move = -self.moveSpeed * globalClock.getDt()
             self.world.player.setY(self.world.player, move)
             if(self.isMovePossible(self.world.player.getPos()) is True):
                 #do somethig
@@ -87,19 +80,7 @@ class Character:
                 self.world.player.setY(self.world.player, -move)
 
         if (self.world.keyMap["backward"]!=0):
-            if(self.world.running is True):
-                move = self.moveSpeed * globalClock.getDt()*2
-            else:
-                move = self.moveSpeed * globalClock.getDt()
-            self.world.player.setY(self.world.player, move)
-            if(self.isMovePossible(self.world.player.getPos()) is True):
-                #do somethig
-                x = True
-            else:
-                self.world.player.setY(self.world.player, -move)
-        if (self.world.keyMap["run-forward"]!=0):
-            #self.world.running = True
-            move = -self.moveSpeed * globalClock.getDt()*2
+            move = self.moveSpeed * globalClock.getDt()
             self.world.player.setY(self.world.player, move)
             if(self.isMovePossible(self.world.player.getPos()) is True):
                 #do somethig
@@ -110,13 +91,9 @@ class Character:
         # If ralph is moving, loop the run animation.
         # If he is standing still, stop the animation.
 
-        if (self.world.keyMap["forward"]!=0) or (self.world.keyMap["backward"]!=0) or (self.world.keyMap["left"]!=0) or (self.world.keyMap["right"]!=0) or (self.world.keyMap["run-forward"]!=0):
+        if (self.world.keyMap["forward"]!=0) or (self.world.keyMap["backward"]!=0) or (self.world.keyMap["left"]!=0) or (self.world.keyMap["right"]!=0):
             if self.world.isMoving is False:
-                if(self.world.keyMap["run-forward"]!=0):
-                    self.world.player.loop("run")
-                    #self.world.running = False
-                else:
-                    self.world.player.loop("walk")
+                self.world.player.loop("run")
                 self.world.isMoving = True
                 self.world.cManager.sendRequest(Constants.CMSG_MOVE, str(self.world.player.getX()) + "," +
                                                                      str(self.world.player.getY()) + "," +
@@ -154,7 +131,7 @@ class Character:
         self.world.floater.setPos(self.world.player.getPos())
         self.world.floater.setZ(self.world.player.getZ() + 2.0)
         base.camera.lookAt(self.world.floater)
-        #self.world.running = False
+
         return task.cont
 
 
@@ -178,7 +155,7 @@ class Character:
 class Ralph(Character):
     def __init__(self, world):
         self.world = world
-        self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0, "run-forward":0}
+        self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0}
 
         # Create the main character, Ralph
         self.world.player = Actor("models/ralph",
@@ -191,7 +168,6 @@ class Ralph(Character):
         base.disableMouse()
 
         self.loadControls()
-        self.world.running = False
         self.world.isMoving = False
         self.moveSpeed = 25
         self.radius = 10
@@ -199,12 +175,11 @@ class Ralph(Character):
 class Panda(Character):
     def __init__(self, world):
         self.world = world
-        self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0, "run-forward":0}
+        self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0}
 
         # Create the main character, Ralph
         self.world.player = Actor("models/panda-model",
-                                {"run": "models/panda-walk4",
-                                "walk": "models/panda-walk4"})
+                                {"run": "models/panda-walk4"})
         self.world.player.reparentTo(render)
         self.world.player.setScale(0.003)
         self.world.player.setPos(10,10,0)
@@ -212,14 +187,13 @@ class Panda(Character):
         base.disableMouse()
 
         self.loadControls()
-        self.world.running = False
         self.world.isMoving = False
         self.moveSpeed = 1500
         self.radius = 20
 class Car(Character):
     def __init__(self, world):
         self.world = world
-        self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0, "run-forward":0}
+        self.world.keyMap = {"left":0, "right":0, "forward":0, "backward":0, "cam-left":0, "cam-right":0}
 
         # Create the main character, Ralph
         self.world.player = Actor("models/T-SM3")
@@ -231,7 +205,6 @@ class Car(Character):
         base.disableMouse()
 
         self.loadControls()
-        self.world.running = False
         self.world.isMoving = False
         self.moveSpeed = 25
         self.radius = 30
