@@ -23,7 +23,7 @@ from characterSelection import characterSelection
 from common.Constants import Constants
 from net.ConnectionManager import ConnectionManager
 from login import login
-from old.game import *
+# from old.game import *
 
 # from modules.characterSelection import characterSelection
 
