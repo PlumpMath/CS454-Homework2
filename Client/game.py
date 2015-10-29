@@ -104,9 +104,9 @@ class World(DirectObject):
 
 
         taskMgr.add(player.move,"moveTask" )
-        taskMgr.add(sun.rotatePlanets,"rotateSun", extraArgs = [self.player], appendTask = True)
-        taskMgr.add(earth.rotatePlanets,"rotateEarth", extraArgs = [self.player], appendTask = True)
-        taskMgr.add(venus.rotatePlanets,"rotateVenus", extraArgs = [self.player], appendTask = True)
+        taskMgr.add(sun.rotatePlanets,"rotateSun", extraArgs = [self.sun,self.player], appendTask = True)
+        taskMgr.add(earth.rotatePlanets,"rotateEarth", extraArgs = [self.earth, self.player], appendTask = True)
+        taskMgr.add(venus.rotatePlanets,"rotateVenus", extraArgs = [self.venus, self.player], appendTask = True)
 
 
         # Create some lighting

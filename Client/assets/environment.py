@@ -12,10 +12,25 @@ from direct.interval.IntervalGlobal import Sequence
 from direct.showbase.DirectObject import DirectObject
 
 
+class Environment:
+
+	def rotatePlanets(self, planet, player, task):
+		if (self.isRotating is False and (planet.getPos() - player.getPos()).length() < 5):
+			print("start")
+			self.start_rotating = task.time
+			self.isRotating = True
+
+		if (self.isRotating is True):
+			do = task.time - self.start_rotating
+			planet.setH(planet.getH() + 5)
+
+		if (self.isRotating is True and (planet.getPos() - player.getPos()).length() > 5):
+			self.isRotating = False
+		return task.cont
 
 
 
-class Sun():
+class Sun(Environment):
 
 	def __init__(self, world):
 		# Create the spheres
@@ -30,6 +45,10 @@ class Sun():
 		self.world.sun.setScale(1.2)
 		self.world.sun.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
+	'''def isClose(self, player, users):
+
+
+
 	def rotatePlanets(self, player, task):
 		if (self.isRotating is False and (self.world.sun.getPos() - player.getPos()).length() < 5):
 			print("start")
@@ -42,9 +61,9 @@ class Sun():
 
 		if (self.isRotating is True and (self.world.sun.getPos() - player.getPos()).length() > 5):
 			self.isRotating = False
-		return task.cont
+		return task.cont'''
 
-class Venus():
+class Venus(Environment):
 
 	def __init__(self, world):
 		self.isRotating= False
@@ -59,7 +78,7 @@ class Venus():
 		self.world.venus.setScale(1.2)
 		self.world.venus.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
-	def rotatePlanets(self, player, task):
+	'''def rotatePlanets(self, player, task):
 		if (self.isRotating is False and (self.world.venus.getPos() - player.getPos()).length() < 5):
 			print("start")
 			self.start_rotating = task.time
@@ -71,10 +90,10 @@ class Venus():
 
 		if (self.isRotating is True and (self.world.venus.getPos() - player.getPos()).length() > 5):
 			self.isRotating = False
-		return task.cont
+		return task.cont'''
 
 
-class Earth():
+class Earth(Environment):
 
 	def __init__(self, world):
 		self.isRotating= False
@@ -89,7 +108,7 @@ class Earth():
 		self.world.earth.setScale(1.2)
 		self.world.earth.setPos(random.randrange(-30, 30, 2),random.randrange(-30, 30, 2),3)
 
-	def rotatePlanets(self, player, task):
+	'''def rotatePlanets(self, player, task):
 		if (self.isRotating is False and (self.world.earth.getPos() - player.getPos()).length() < 5):
 			print("start")
 			self.start_rotating = task.time
@@ -101,7 +120,7 @@ class Earth():
 
 		if (self.isRotating is True and (self.world.earth.getPos() - player.getPos()).length() > 5):
 			self.isRotating = False
-		return task.cont
+		return task.cont'''
 
 
 
