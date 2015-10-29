@@ -23,25 +23,34 @@ from characterSelection import characterSelection
 from common.Constants import Constants
 from net.ConnectionManager import ConnectionManager
 from login import login
-# from old.game import *
+from game import *
 
 # from modules.characterSelection import characterSelection
 
 class Main(DirectObject):
 
     def __init__(self):
+        base.win.setClearColor(Vec4(0,0,0,1))
+ 
+        # Load the environment model.
+        self.environ = self.loader.loadModel("models/environment")
+        # Reparent the model to render.
+        self.environ.reparentTo(self.render)
+        # Apply scale and position transforms on the model.
+        self.environ.setScale(0.25, 0.25, 0.25)
+        self.environ.setPos(-8, 42, 0)
+
+        self.floater = NodePath(PandaNode("floater"))
+        self.floater.reparentTo(render)
 
 	    # Network Setup
         self.cManager = ConnectionManager(self)
         self.cManager.startConnection()
-        self.login = login(self)
+        # self.login = login(self)
 
 
 
-    def getUserName(self):
-        print "Vatsal Sevak in Login Page"
-
-    # def CharSelect(self,msg,
+    
         
     def CharSelect(self, welcome, userList):
         self.welcome = welcome
@@ -60,43 +69,8 @@ class Main(DirectObject):
         print self.char
         print self.count
         print self.playerlist
-
-        def __init__(self):
-            base.win.setClearColor(Vec4(0,0,0,1))
-
-            # Set up the environment
-            #
-            self.environ = loader.loadModel("models/square")
-            self.environ.reparentTo(render)
-            self.environ.setPos(0,0,0)
-            self.environ.setScale(100,100,1)
-            self.moon_tex = loader.loadTexture("models/moon_1k_tex.jpg")
-            self.environ.setTexture(self.moon_tex, 1)
-
-            self.floater = NodePath(PandaNode("floater"))
-            self.floater.reparentTo(render)
-
-            controls = Control()
-            chat = Chat(self)
-            player = Ralph(self)
-
-            # player = Panda(self)
-            # player = Car(self)
-
-            taskMgr.add(player.move,"moveTask")
-
-
-            # Create some lighting
-            ambientLight = AmbientLight("ambientLight")
-            ambientLight.setColor(Vec4(.3, .3, .3, 1))
-            directionalLight = DirectionalLight("directionalLight")
-            directionalLight.setDirection(Vec3(-5, -5, -5))
-            directionalLight.setColor(Vec4(1, 1, 1, 1))
-            directionalLight.setSpecularColor(Vec4(1, 1, 1, 1))
-            render.setLight(render.attachNewNode(ambientLight))
-            render.setLight(render.attachNewNode(directionalLight))
-
-            print "game started"
+        self.StartGame = Game(self)
+        print "game started"
 
     def startConnection(self):
         """Create a connection to the remote host.

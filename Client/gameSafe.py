@@ -34,7 +34,7 @@ from net.ConnectionManager import ConnectionManager
 SPEED = 0.5
 
 class World(DirectObject):
-
+    
     def startConnection(self):
         """Create a connection to the remote host.
 
@@ -70,8 +70,9 @@ class World(DirectObject):
         self.floater = NodePath(PandaNode("floater"))
         self.floater.reparentTo(render)
 
-        # # add spheres
+        # add spheres
         earth = Earth(self)
+
         sun = Sun(self)
         venus = Venus(self)
 
@@ -79,7 +80,7 @@ class World(DirectObject):
 
         controls = Control()
         chat = Chat(self)
-        player = Panda(self)
+        player = Ralph(self)
 
 
         # player = Panda(self)
