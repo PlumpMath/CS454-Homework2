@@ -69,7 +69,7 @@ class Chat:
 
         #clear the text
         def clearText():
-            #entry.enterText('')
+            entry.enterText('')
             test = "test"
 
         entry = DirectEntry(
