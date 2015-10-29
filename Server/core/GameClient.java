@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
 // Custom Imports
 //import dataAccessLayer.PlayerDAO;
 import metadata.Constants;
@@ -176,7 +177,7 @@ public class GameClient extends Thread {
         return username;
     }
 
-    public String setPlayer(String username) {
+    public String setUsername(String username) {
         return this.username = username;
     }
 

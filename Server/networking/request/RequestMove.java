@@ -45,6 +45,6 @@ public class RequestMove extends GameRequest {
       responseMove.setH(h);
       responseMove.setIsMoving(isMoving);
 
-      this.client.server.addResponseForAllOnlinePlayers()
+      this.client.getServer().addResponseForAllOnlinePlayers(this.client.getUsername(), responseMove);
     }
 }

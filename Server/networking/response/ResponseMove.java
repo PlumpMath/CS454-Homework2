@@ -33,7 +33,7 @@ public class ResponseMove extends GameResponse {
       return username;
     }
 
-    public String setUsername() {
+    public void setUsername(String username) {
       this.username = username;
     }
 
